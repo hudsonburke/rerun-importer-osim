@@ -233,6 +233,8 @@ def parse_vtp(filepath: str) -> dict | None:
     """Parse a .vtp (VTK PolyData XML) file into vertices and triangles.
 
     Returns dict with ``vertices`` (N, 3) and ``triangles`` (M, 3), or None.
+    Handles ``Polys`` (triangles), ``Strips`` (triangle strips), and
+    ``Verts`` (points-only).
     """
     try:
         tree = ET.parse(filepath)
@@ -252,32 +254,70 @@ def parse_vtp(filepath: str) -> dict | None:
     if data_arr is None or data_arr.text is None:
         return None
     verts = np.fromstring(data_arr.text.strip(), sep=" ", dtype=np.float64)
+    if len(verts) == 0:
+        return None
     verts = verts.reshape(-1, 3)
+    n_verts = len(verts)
 
-    # Triangles (Polys)
+    # Try Polys first (most common for meshes)
     polys_elem = piece.find("Polys")
-    if polys_elem is None:
-        return {"vertices": verts, "triangles": np.zeros((0, 3), dtype=np.int32)}
+    tris = np.zeros((0, 3), dtype=np.int32)
+    if polys_elem is not None:
+        conn_arr = polys_elem.find("DataArray")
+        if conn_arr is not None and conn_arr.text and conn_arr.text.strip():
+            conn = np.fromstring(conn_arr.text.strip(), sep=" ", dtype=np.int32)
+            # VTP polys stored as (n1, i1, i2, ..., n2, j1, j2, ...)
+            tris_list = []
+            pos = 0
+            while pos < len(conn):
+                n = int(conn[pos])
+                if n == 3:
+                    tris_list.append(conn[pos + 1 : pos + 4])
+                pos += n + 1
+            tris = np.array(tris_list, dtype=np.int32) if tris_list else tris
 
-    conn_arr = polys_elem.find("DataArray")
-    if conn_arr is None or conn_arr.text is None:
-        return {"vertices": verts, "triangles": np.zeros((0, 3), dtype=np.int32)}
+    # Try Strips if no triangles found (older VTP / strip geometry)
+    if len(tris) == 0:
+        strips_elem = piece.find("Strips")
+        if strips_elem is not None:
+            conn_arr = strips_elem.find("DataArray")
+            if conn_arr is not None and conn_arr.text and conn_arr.text.strip():
+                conn = np.fromstring(conn_arr.text.strip(), sep=" ", dtype=np.int32)
+                # VTP strips: (n1, i1, i2, i3, ..., n2, j1, j2, j3, ...)
+                # Each strip of length n produces (n-2) triangles
+                strips_tris = []
+                pos = 0
+                while pos < len(conn):
+                    n = int(conn[pos])
+                    strip_verts = conn[pos + 1 : pos + n + 1]
+                    for k in range(2, len(strip_verts)):
+                        # Alternate CW vs CCW for each triangle in the strip
+                        if k % 2 == 0:
+                            strips_tris.append([int(strip_verts[k - 2]), int(strip_verts[k - 1]), int(strip_verts[k])])
+                        else:
+                            strips_tris.append([int(strip_verts[k - 1]), int(strip_verts[k - 2]), int(strip_verts[k])])
+                    pos += n + 1
+                tris = np.array(strips_tris, dtype=np.int32) if strips_tris else tris
 
-    conn = np.fromstring(conn_arr.text.strip(), sep=" ", dtype=np.int32)
+    return {"vertices": verts, "triangles": tris}
 
-    # VTP stores polys as (n1, i1, i2, ..., n2, j1, j2, ...) where n is count
-    tris_list = []
-    pos = 0
-    while pos < len(conn):
-        n = int(conn[pos])
-        if n == 3:
-            tris_list.append(conn[pos + 1 : pos + 4])
-        pos += n + 1
 
-    return {
-        "vertices": verts,
-        "triangles": np.array(tris_list, dtype=np.int32) if tris_list else np.zeros((0, 3), dtype=np.int32),
-    }
+def compute_normals(verts: np.ndarray, tris: np.ndarray) -> np.ndarray | None:
+    """Compute per-vertex normals from a triangle mesh."""
+    if len(tris) == 0:
+        return None
+    v = verts[tris]  # (M, 3, 3)
+    face_normals = np.cross(v[:, 1] - v[:, 0], v[:, 2] - v[:, 0])
+    norms = np.linalg.norm(face_normals, axis=1, keepdims=True)
+    face_normals = np.divide(face_normals, norms, out=np.zeros_like(face_normals), where=norms > 1e-12)
+
+    vertex_normals = np.zeros_like(verts)
+    for i in range(len(tris)):
+        for j in range(3):
+            vertex_normals[tris[i, j]] += face_normals[i]
+    vn_norms = np.linalg.norm(vertex_normals, axis=1, keepdims=True)
+    vertex_normals = np.divide(vertex_normals, vn_norms, out=np.zeros_like(vertex_normals), where=vn_norms > 1e-12)
+    return vertex_normals.astype(np.float32)
 
 
 # ---------------------------------------------------------------------------
@@ -417,14 +457,28 @@ def log_osim(filepath: str, prefix: str, recording: rr.RecordingStream) -> None:
                 continue
             scale = geo_info.get("scale", [1.0, 1.0, 1.0])
             verts = mesh["vertices"] * scale
-            recording.log(
-                f"{body_path}/mesh",
-                rr.Mesh3D(
-                    vertex_positions=verts,
-                    triangle_indices=mesh["triangles"],
-                ),
-                static=True,
-            )
+
+            if len(mesh["triangles"]) > 0:
+                normals = compute_normals(verts, mesh["triangles"])
+                recording.log(
+                    f"{body_path}/mesh",
+                    rr.Mesh3D(
+                        vertex_positions=verts,
+                        triangle_indices=mesh["triangles"],
+                        vertex_normals=normals,
+                    ),
+                    static=True,
+                )
+            else:
+                # Verts-only: log as point cloud
+                recording.log(
+                    f"{body_path}/mesh",
+                    rr.Points3D(
+                        verts,
+                        radii=0.005,
+                    ),
+                    static=True,
+                )
 
     # Log joint hierarchy as transforms
     for joint in model["joints"]:

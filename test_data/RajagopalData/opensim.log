@@ -1,0 +1,1931 @@
+[2026-04-03 10:45:39.320] [info] Updating Model file from 30000 to latest format...
+[2026-04-03 10:45:39.392] [info] Loaded model FullBodyModel_MuscleActuatedLowerLimb_TorqueActuatedUpperBody from file Z:\home\hudson\Downloads\RajagopalData\Rajagopal2015.osim
+[2026-04-03 10:52:40.499] [info] Loaded model scaled_scaled from file Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\scaled_scaled_inertia.osim
+[2026-04-03 10:53:17.693] [info] Storage: read data file = Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_ik.mot (nr=117 nc=23)
+[2026-04-03 10:53:30.975] [cout] [info] 
+               MODEL: scaled_scaled
+         coordinates: 22
+              forces: 76
+           actuators: 76
+             muscles: 76
+            analyses: 2
+              probes: 0
+              bodies: 9
+              joints: 9
+         constraints: 0
+             markers: 12
+         controllers: 0
+  contact geometries: 0
+misc modelcomponents: 0
+[2026-04-03 10:53:30.975] [info] Running tool scaled_scaled...
+[2026-04-03 10:53:31.006] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 10:53:31.083] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 10:53:31.083] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 10:53:31.097] [info] Storage: read data file = Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_ik.mot (nr=117 nc=23)
+[2026-04-03 10:53:31.101] [info] Low-pass filtering coordinates data with a cutoff frequency of 15.0...
+[2026-04-03 10:53:31.599] [warning] Coordinate.setValue:  coordinate sacroiliac_r_flx is locked. Unable to change its value.
+[2026-04-03 10:53:31.600] [warning] Coordinate.setValue:  coordinate ankle_r_add is locked. Unable to change its value.
+[2026-04-03 10:53:31.600] [warning] Coordinate.setValue:  coordinate sacroiliac_l_flx is locked. Unable to change its value.
+[2026-04-03 10:53:31.600] [warning] Coordinate.setValue:  coordinate ankle_l_add is locked. Unable to change its value.
+[2026-04-03 10:53:31.625] [info] InverseDynamicsTool: 117 time frames in 480 millisecond(s).
+[2026-04-03 10:53:31.632] [info] Storage: read data file = Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_ik.mot (nr=117 nc=23)
+[2026-04-03 10:53:31.663] [warning] Coordinate.setValue:  coordinate sacroiliac_r_flx is locked. Unable to change its value.
+[2026-04-03 10:53:31.663] [warning] Coordinate.setValue:  coordinate ankle_r_add is locked. Unable to change its value.
+[2026-04-03 10:53:31.663] [warning] Coordinate.setValue:  coordinate sacroiliac_l_flx is locked. Unable to change its value.
+[2026-04-03 10:53:31.663] [warning] Coordinate.setValue:  coordinate ankle_l_add is locked. Unable to change its value.
+[2026-04-03 10:55:17.500] [info] Storage: read data file = Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\inverse_dynamics.sto (nr=117 nc=23)
+[2026-04-03 10:55:58.127] [info] Storage: read data file = Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_id.sto (nr=117 nc=23)
+[2026-04-03 10:57:36.331] [info] Adding force object set from Z:/home/hudson/Downloads/CMC_Runs/BAA01/Baseline/../../../../rat-hindlimb-model/models/osim/xml/rat_hindlimb_bilateral_rra_actuators.xml
+[2026-04-03 10:57:36.342] [info] Running tool scaled_scaled.
+[2026-04-03 10:57:36.350] [info] 	taskSet size = 16.
+[2026-04-03 10:57:36.353] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 10:57:36.421] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 10:57:36.421] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 10:57:36.424] [warning] A desired points file was not specified.
+[2026-04-03 10:57:36.424] [info] Loading desired kinematics from file 'Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_ik.mot'...
+[2026-04-03 10:57:36.425] [info] Storage: read data file = Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_ik.mot (nr=117 nc=23)
+[2026-04-03 10:57:36.428] [info] Low-pass filtering desired kinematics with a cutoff frequency of 15.0...
+[2026-04-03 10:57:36.443] [cout] [info] MODEL: scaled_scaled
+
+numStates = 44
+numCoordinates = 22
+numSpeeds = 22
+numActuators = 16
+numBodies = 9
+numConstraints = 0
+numProbes = 0
+
+ANALYSES (total: 2)
+analysis[0] = Un-named analysis.
+analysis[1] = Un-named analysis.
+
+BODIES (total: 9)
+body[0] = spine. mass: 0.103872
+              moments of inertia:  ~[3.34382e-06,3.34382e-06,3.34382e-06]
+              products of inertia: ~[0,0,0]
+body[1] = pelvis_r. mass: 0.0138605
+              moments of inertia:  ~[1.86116e-06,1.77382e-06,1.86116e-06]
+              products of inertia: ~[0,0,0]
+body[2] = femur_r. mass: 0.00604856
+              moments of inertia:  ~[5.32884e-07,4.04428e-07,6.97156e-07]
+              products of inertia: ~[0,0,0]
+body[3] = tibia_r. mass: 0.00391398
+              moments of inertia:  ~[4.96367e-07,1.39711e-07,4.98772e-07]
+              products of inertia: ~[0,0,0]
+body[4] = foot_r. mass: 0.00150287
+              moments of inertia:  ~[3.15039e-08,4.24762e-09,2.98504e-07]
+              products of inertia: ~[0,0,0]
+body[5] = pelvis_l. mass: 0.0138605
+              moments of inertia:  ~[1.86116e-06,1.77382e-06,1.86116e-06]
+              products of inertia: ~[0,-0,-0]
+body[6] = femur_l. mass: 0.00604856
+              moments of inertia:  ~[5.49935e-07,4.17369e-07,7.19463e-07]
+              products of inertia: ~[0,0,0]
+body[7] = tibia_l. mass: 0.00391398
+              moments of inertia:  ~[4.96367e-07,1.39711e-07,4.98772e-07]
+              products of inertia: ~[0,0,0]
+body[8] = foot_l. mass: 0.00150287
+              moments of inertia:  ~[3.15039e-08,4.24762e-09,2.98504e-08]
+              products of inertia: ~[0,0,0]
+
+JOINTS (total: 9)
+joint[0] = ground_spine. parent: ground_offset, child: spine_offset
+joint[1] = sacroiliac_r. parent: spine_offset, child: pelvis_r_offset
+joint[2] = hip_r. parent: pelvis_r_offset, child: femur_r_offset
+joint[3] = knee_r. parent: femur_r_offset, child: tibia_r_offset
+joint[4] = ankle_r. parent: tibia_r_offset, child: foot_r_offset
+joint[5] = sacroiliac_l. parent: spine_offset, child: pelvis_l_offset
+joint[6] = hip_l. parent: pelvis_l_offset, child: femur_l_offset
+joint[7] = knee_l. parent: femur_l_offset, child: tibia_l_offset
+joint[8] = ankle_l. parent: tibia_l_offset, child: foot_l_offset
+
+ACTUATORS (total: 16)
+actuator[0] = sacrum_pitch_reserve
+actuator[1] = sacrum_roll_reserve
+actuator[2] = sacrum_yaw_reserve
+actuator[3] = sacrum_x_reserve
+actuator[4] = sacrum_y_reserve
+actuator[5] = sacrum_z_reserve
+actuator[6] = hip_r_flx_reserve
+actuator[7] = hip_r_add_reserve
+actuator[8] = hip_r_int_reserve
+actuator[9] = knee_r_flx_reserve
+actuator[10] = ankle_r_flx_reserve
+actuator[11] = hip_l_flx_reserve
+actuator[12] = hip_l_add_reserve
+actuator[13] = hip_l_int_reserve
+actuator[14] = knee_l_flx_reserve
+actuator[15] = ankle_l_flx_reserve
+
+STATES (total: 44)
+y[0] = /jointset/ground_spine/sacrum_pitch/value
+y[1] = /jointset/ground_spine/sacrum_pitch/speed
+y[2] = /jointset/ground_spine/sacrum_roll/value
+y[3] = /jointset/ground_spine/sacrum_roll/speed
+y[4] = /jointset/ground_spine/sacrum_yaw/value
+y[5] = /jointset/ground_spine/sacrum_yaw/speed
+y[6] = /jointset/ground_spine/sacrum_x/value
+y[7] = /jointset/ground_spine/sacrum_x/speed
+y[8] = /jointset/ground_spine/sacrum_y/value
+y[9] = /jointset/ground_spine/sacrum_y/speed
+y[10] = /jointset/ground_spine/sacrum_z/value
+y[11] = /jointset/ground_spine/sacrum_z/speed
+y[12] = /jointset/sacroiliac_r/sacroiliac_r_flx/value
+y[13] = /jointset/sacroiliac_r/sacroiliac_r_flx/speed
+y[14] = /jointset/hip_r/hip_r_flx/value
+y[15] = /jointset/hip_r/hip_r_flx/speed
+y[16] = /jointset/hip_r/hip_r_add/value
+y[17] = /jointset/hip_r/hip_r_add/speed
+y[18] = /jointset/hip_r/hip_r_int/value
+y[19] = /jointset/hip_r/hip_r_int/speed
+y[20] = /jointset/knee_r/knee_r_flx/value
+y[21] = /jointset/knee_r/knee_r_flx/speed
+y[22] = /jointset/ankle_r/ankle_r_flx/value
+y[23] = /jointset/ankle_r/ankle_r_flx/speed
+y[24] = /jointset/ankle_r/ankle_r_add/value
+y[25] = /jointset/ankle_r/ankle_r_add/speed
+y[26] = /jointset/ankle_r/ankle_r_int/value
+y[27] = /jointset/ankle_r/ankle_r_int/speed
+y[28] = /jointset/sacroiliac_l/sacroiliac_l_flx/value
+y[29] = /jointset/sacroiliac_l/sacroiliac_l_flx/speed
+y[30] = /jointset/hip_l/hip_l_flx/value
+y[31] = /jointset/hip_l/hip_l_flx/speed
+y[32] = /jointset/hip_l/hip_l_add/value
+y[33] = /jointset/hip_l/hip_l_add/speed
+y[34] = /jointset/hip_l/hip_l_int/value
+y[35] = /jointset/hip_l/hip_l_int/speed
+y[36] = /jointset/knee_l/knee_l_flx/value
+y[37] = /jointset/knee_l/knee_l_flx/speed
+y[38] = /jointset/ankle_l/ankle_l_flx/value
+y[39] = /jointset/ankle_l/ankle_l_flx/speed
+y[40] = /jointset/ankle_l/ankle_l_add/value
+y[41] = /jointset/ankle_l/ankle_l_add/speed
+y[42] = /jointset/ankle_l/ankle_l_int/value
+y[43] = /jointset/ankle_l/ankle_l_int/speed
+
+[2026-04-03 10:57:36.503] [warning] Coordinate.setValue:  coordinate sacroiliac_r_flx is locked. Unable to change its value.
+[2026-04-03 10:57:36.503] [warning] Coordinate.setValue:  coordinate ankle_r_add is locked. Unable to change its value.
+[2026-04-03 10:57:36.503] [warning] Coordinate.setValue:  coordinate sacroiliac_l_flx is locked. Unable to change its value.
+[2026-04-03 10:57:36.503] [warning] Coordinate.setValue:  coordinate ankle_l_add is locked. Unable to change its value.
+[2026-04-03 10:57:36.513] [info] Requested COM adjustment time range 2.87 to 3.45, clamped to nearest available data times: 2.87 to 3.45.
+[2026-04-03 10:57:36.513] [info] Computing average residuals between 2.87 and 3.45...
+[2026-04-03 10:57:36.523] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 10:57:36.584] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 10:57:36.584] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 10:57:36.590] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 10:57:36.656] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 10:57:36.656] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 10:57:37.326] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 10:57:37.394] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 10:57:37.394] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 10:57:37.399] [info] Computing average residuals between 2.87 and 3.45...
+[2026-04-03 10:57:37.410] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 10:57:37.477] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 10:57:37.477] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 10:57:37.483] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 10:57:37.546] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 10:57:37.546] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 10:57:38.136] [info] Constructing function set for tracking desired kinematics...
+[2026-04-03 10:57:38.254] [warning] No Actuation analysis found in analysis set, adding one...
+[2026-04-03 10:57:38.254] [warning] No Kinematics analysis found in analysis set, adding one...
+[2026-04-03 10:57:38.255] [info] Using the generalized coordinates specified in 'Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_ik.mot' to set the initial configuration.
+[2026-04-03 10:57:38.291] [warning] Coordinate.setValue:  coordinate sacroiliac_r_flx is locked. Unable to change its value.
+[2026-04-03 10:57:38.292] [warning] Coordinate.setValue:  coordinate ankle_r_add is locked. Unable to change its value.
+[2026-04-03 10:57:38.292] [warning] Coordinate.setValue:  coordinate sacroiliac_l_flx is locked. Unable to change its value.
+[2026-04-03 10:57:38.292] [warning] Coordinate.setValue:  coordinate ankle_l_add is locked. Unable to change its value.
+[2026-04-03 10:57:38.292] [info] Using IPOPT optimizer algorithm.
+[2026-04-03 10:57:38.292] [info] Setting optimizer print level to 0.
+[2026-04-03 10:57:38.292] [info] Setting optimizer convergence tolerance to 1.0e-05.
+[2026-04-03 10:57:38.292] [info] Setting optimizer maximum iterations to 2000.
+[2026-04-03 10:57:38.292] [info] Setting cmc controller to not use verbose printing.
+
+[2026-04-03 10:57:38.292] [info] CMC::computeControls, t = 2.87
+[2026-04-03 10:57:38.727] [info] --------------------------------------------
+[2026-04-03 10:57:38.727] [info] Using CMC to track the specified kinematics:
+[2026-04-03 10:57:38.727] [info] --------------------------------------------
+[2026-04-03 10:57:38.727] [info]  -- Integrating from 2.87 to 3.45
+[2026-04-03 10:57:38.727] [info]  -- Start time = Fri Apr  3 10:57:38 2026
+[2026-04-03 10:57:38.727] [info] --------------------------------------------
+[2026-04-03 10:57:38.727] [info] 
+[2026-04-03 10:57:38.729] [info] CMC::computeControls, t = 2.87
+[2026-04-03 10:57:38.751] [info] CMC::computeControls, t = 2.871
+[2026-04-03 10:57:38.751] [warning] Coordinate.setValue:  coordinate ankle_r_int is locked. Unable to change its value.
+[2026-04-03 10:57:38.752] [warning] Coordinate.setValue:  coordinate ankle_l_int is locked. Unable to change its value.
+[2026-04-03 10:57:38.778] [info] CMC::computeControls, t = 2.872
+[2026-04-03 10:57:38.795] [info] CMC::computeControls, t = 2.873
+[2026-04-03 10:57:38.810] [info] CMC::computeControls, t = 2.874
+[2026-04-03 10:57:38.824] [info] CMC::computeControls, t = 2.875
+[2026-04-03 10:57:38.838] [info] CMC::computeControls, t = 2.876
+[2026-04-03 10:57:38.853] [info] CMC::computeControls, t = 2.877
+[2026-04-03 10:57:38.866] [info] CMC::computeControls, t = 2.878
+[2026-04-03 10:57:38.879] [info] CMC::computeControls, t = 2.879
+[2026-04-03 10:57:38.893] [info] CMC::computeControls, t = 2.88
+[2026-04-03 10:57:38.907] [info] CMC::computeControls, t = 2.881
+[2026-04-03 10:57:38.922] [info] CMC::computeControls, t = 2.882
+[2026-04-03 10:57:38.937] [warning] Coordinate.setValue:  coordinate ankle_r_int is locked. Unable to change its value.
+[2026-04-03 10:57:38.937] [warning] Coordinate.setValue:  coordinate ankle_l_int is locked. Unable to change its value.
+[2026-04-03 10:57:38.940] [info] CMC::computeControls, t = 2.883
+[2026-04-03 10:57:38.958] [info] CMC::computeControls, t = 2.884
+[2026-04-03 10:57:38.971] [info] CMC::computeControls, t = 2.885
+[2026-04-03 10:57:38.985] [info] CMC::computeControls, t = 2.886
+[2026-04-03 10:57:38.997] [info] CMC::computeControls, t = 2.887
+[2026-04-03 10:57:39.009] [info] CMC::computeControls, t = 2.888
+[2026-04-03 10:57:39.023] [info] CMC::computeControls, t = 2.889
+[2026-04-03 10:57:39.036] [info] CMC::computeControls, t = 2.89
+[2026-04-03 10:57:39.048] [info] CMC::computeControls, t = 2.891
+[2026-04-03 10:57:39.060] [info] CMC::computeControls, t = 2.892
+[2026-04-03 10:57:39.074] [info] CMC::computeControls, t = 2.893
+[2026-04-03 10:57:39.087] [info] CMC::computeControls, t = 2.894
+[2026-04-03 10:57:39.099] [info] CMC::computeControls, t = 2.895
+[2026-04-03 10:57:39.113] [info] CMC::computeControls, t = 2.896
+[2026-04-03 10:57:39.125] [info] CMC::computeControls, t = 2.897
+[2026-04-03 10:57:39.139] [info] CMC::computeControls, t = 2.898
+[2026-04-03 10:57:39.153] [info] CMC::computeControls, t = 2.899
+[2026-04-03 10:57:39.167] [info] CMC::computeControls, t = 2.9
+[2026-04-03 10:57:39.181] [info] CMC::computeControls, t = 2.90100
+[2026-04-03 10:57:39.194] [info] CMC::computeControls, t = 2.90200
+[2026-04-03 10:57:39.206] [info] CMC::computeControls, t = 2.90300
+[2026-04-03 10:57:39.218] [info] CMC::computeControls, t = 2.90400
+[2026-04-03 10:57:39.229] [info] CMC::computeControls, t = 2.90500
+[2026-04-03 10:57:39.243] [info] CMC::computeControls, t = 2.90600
+[2026-04-03 10:57:39.255] [info] CMC::computeControls, t = 2.90700
+[2026-04-03 10:57:39.269] [info] CMC::computeControls, t = 2.90800
+[2026-04-03 10:57:39.281] [info] CMC::computeControls, t = 2.90900
+[2026-04-03 10:57:39.292] [info] CMC::computeControls, t = 2.91
+[2026-04-03 10:57:39.304] [info] CMC::computeControls, t = 2.911
+[2026-04-03 10:57:39.315] [info] CMC::computeControls, t = 2.912
+[2026-04-03 10:57:39.328] [info] CMC::computeControls, t = 2.913
+[2026-04-03 10:57:39.347] [info] CMC::computeControls, t = 2.914
+[2026-04-03 10:57:39.362] [info] CMC::computeControls, t = 2.915
+[2026-04-03 10:57:39.375] [info] CMC::computeControls, t = 2.916
+[2026-04-03 10:57:39.386] [info] CMC::computeControls, t = 2.917
+[2026-04-03 10:57:39.396] [info] CMC::computeControls, t = 2.918
+[2026-04-03 10:57:39.408] [info] CMC::computeControls, t = 2.919
+[2026-04-03 10:57:39.420] [info] CMC::computeControls, t = 2.92
+[2026-04-03 10:57:39.431] [info] CMC::computeControls, t = 2.921
+[2026-04-03 10:57:39.442] [info] CMC::computeControls, t = 2.922
+[2026-04-03 10:57:39.453] [info] CMC::computeControls, t = 2.923
+[2026-04-03 10:57:39.463] [info] CMC::computeControls, t = 2.924
+[2026-04-03 10:57:39.474] [info] CMC::computeControls, t = 2.925
+[2026-04-03 10:57:39.485] [info] CMC::computeControls, t = 2.926
+[2026-04-03 10:57:39.496] [info] CMC::computeControls, t = 2.927
+[2026-04-03 10:57:39.507] [info] CMC::computeControls, t = 2.928
+[2026-04-03 10:57:39.519] [info] CMC::computeControls, t = 2.929
+[2026-04-03 10:57:39.530] [info] CMC::computeControls, t = 2.93
+[2026-04-03 10:57:39.544] [info] CMC::computeControls, t = 2.931
+[2026-04-03 10:57:39.556] [info] CMC::computeControls, t = 2.932
+[2026-04-03 10:57:39.570] [info] CMC::computeControls, t = 2.933
+[2026-04-03 10:57:39.581] [info] CMC::computeControls, t = 2.934
+[2026-04-03 10:57:39.593] [info] CMC::computeControls, t = 2.935
+[2026-04-03 10:57:39.605] [info] CMC::computeControls, t = 2.936
+[2026-04-03 10:57:39.617] [info] CMC::computeControls, t = 2.937
+[2026-04-03 10:57:39.628] [info] CMC::computeControls, t = 2.938
+[2026-04-03 10:57:39.640] [info] CMC::computeControls, t = 2.939
+[2026-04-03 10:57:39.652] [info] CMC::computeControls, t = 2.94
+[2026-04-03 10:57:39.664] [info] CMC::computeControls, t = 2.941
+[2026-04-03 10:57:39.676] [info] CMC::computeControls, t = 2.942
+[2026-04-03 10:57:39.687] [info] CMC::computeControls, t = 2.943
+[2026-04-03 10:57:39.698] [info] CMC::computeControls, t = 2.944
+[2026-04-03 10:57:39.710] [info] CMC::computeControls, t = 2.945
+[2026-04-03 10:57:39.722] [info] CMC::computeControls, t = 2.946
+[2026-04-03 10:57:39.736] [info] CMC::computeControls, t = 2.947
+[2026-04-03 10:57:39.748] [info] CMC::computeControls, t = 2.948
+[2026-04-03 10:57:39.763] [info] CMC::computeControls, t = 2.949
+[2026-04-03 10:57:39.777] [info] CMC::computeControls, t = 2.95
+[2026-04-03 10:57:39.789] [info] CMC::computeControls, t = 2.951
+[2026-04-03 10:57:39.802] [info] CMC::computeControls, t = 2.952
+[2026-04-03 10:57:39.814] [info] CMC::computeControls, t = 2.953
+[2026-04-03 10:57:39.825] [info] CMC::computeControls, t = 2.954
+[2026-04-03 10:57:39.839] [info] CMC::computeControls, t = 2.955
+[2026-04-03 10:57:39.852] [info] CMC::computeControls, t = 2.956
+[2026-04-03 10:57:39.866] [info] CMC::computeControls, t = 2.957
+[2026-04-03 10:57:39.881] [info] CMC::computeControls, t = 2.958
+[2026-04-03 10:57:39.892] [info] CMC::computeControls, t = 2.959
+[2026-04-03 10:57:39.903] [info] CMC::computeControls, t = 2.96
+[2026-04-03 10:57:39.916] [info] CMC::computeControls, t = 2.961
+[2026-04-03 10:57:39.928] [info] CMC::computeControls, t = 2.962
+[2026-04-03 10:57:39.942] [info] CMC::computeControls, t = 2.963
+[2026-04-03 10:57:39.955] [info] CMC::computeControls, t = 2.964
+[2026-04-03 10:57:39.969] [info] CMC::computeControls, t = 2.965
+[2026-04-03 10:57:39.980] [info] CMC::computeControls, t = 2.966
+[2026-04-03 10:57:39.992] [info] CMC::computeControls, t = 2.967
+[2026-04-03 10:57:40.004] [info] CMC::computeControls, t = 2.968
+[2026-04-03 10:57:40.018] [info] CMC::computeControls, t = 2.969
+[2026-04-03 10:57:40.031] [info] CMC::computeControls, t = 2.97
+[2026-04-03 10:57:40.051] [info] CMC::computeControls, t = 2.971
+[2026-04-03 10:57:40.073] [info] CMC::computeControls, t = 2.972
+[2026-04-03 10:57:40.097] [info] CMC::computeControls, t = 2.973
+[2026-04-03 10:57:40.115] [info] CMC::computeControls, t = 2.974
+[2026-04-03 10:57:40.127] [info] CMC::computeControls, t = 2.975
+[2026-04-03 10:57:40.140] [info] CMC::computeControls, t = 2.976
+[2026-04-03 10:57:40.153] [info] CMC::computeControls, t = 2.977
+[2026-04-03 10:57:40.164] [info] CMC::computeControls, t = 2.978
+[2026-04-03 10:57:40.176] [info] CMC::computeControls, t = 2.979
+[2026-04-03 10:57:40.188] [info] CMC::computeControls, t = 2.98
+[2026-04-03 10:57:40.199] [info] CMC::computeControls, t = 2.981
+[2026-04-03 10:57:40.210] [info] CMC::computeControls, t = 2.982
+[2026-04-03 10:57:40.222] [info] CMC::computeControls, t = 2.983
+[2026-04-03 10:57:40.236] [info] CMC::computeControls, t = 2.984
+[2026-04-03 10:57:40.247] [info] CMC::computeControls, t = 2.985
+[2026-04-03 10:57:40.260] [info] CMC::computeControls, t = 2.986
+[2026-04-03 10:57:40.275] [info] CMC::computeControls, t = 2.987
+[2026-04-03 10:57:40.288] [info] CMC::computeControls, t = 2.988
+[2026-04-03 10:57:40.301] [info] CMC::computeControls, t = 2.989
+[2026-04-03 10:57:40.315] [info] CMC::computeControls, t = 2.99
+[2026-04-03 10:57:40.328] [info] CMC::computeControls, t = 2.991
+[2026-04-03 10:57:40.343] [info] CMC::computeControls, t = 2.992
+[2026-04-03 10:57:40.355] [info] CMC::computeControls, t = 2.993
+[2026-04-03 10:57:40.365] [info] CMC::computeControls, t = 2.994
+[2026-04-03 10:57:40.379] [info] CMC::computeControls, t = 2.995
+[2026-04-03 10:57:40.390] [info] CMC::computeControls, t = 2.996
+[2026-04-03 10:57:40.401] [info] CMC::computeControls, t = 2.997
+[2026-04-03 10:57:40.414] [info] CMC::computeControls, t = 2.998
+[2026-04-03 10:57:40.426] [info] CMC::computeControls, t = 2.999
+[2026-04-03 10:57:40.439] [info] CMC::computeControls, t = 3.0
+[2026-04-03 10:57:40.450] [info] CMC::computeControls, t = 3.00100
+[2026-04-03 10:57:40.462] [info] CMC::computeControls, t = 3.00200
+[2026-04-03 10:57:40.476] [info] CMC::computeControls, t = 3.00300
+[2026-04-03 10:57:40.487] [info] CMC::computeControls, t = 3.00400
+[2026-04-03 10:57:40.498] [info] CMC::computeControls, t = 3.00500
+[2026-04-03 10:57:40.510] [info] CMC::computeControls, t = 3.00600
+[2026-04-03 10:57:40.523] [info] CMC::computeControls, t = 3.00700
+[2026-04-03 10:57:40.537] [info] CMC::computeControls, t = 3.00800
+[2026-04-03 10:57:40.551] [info] CMC::computeControls, t = 3.00900
+[2026-04-03 10:57:40.565] [info] CMC::computeControls, t = 3.01
+[2026-04-03 10:57:40.580] [info] CMC::computeControls, t = 3.011
+[2026-04-03 10:57:40.592] [info] CMC::computeControls, t = 3.012
+[2026-04-03 10:57:40.607] [info] CMC::computeControls, t = 3.013
+[2026-04-03 10:57:40.620] [info] CMC::computeControls, t = 3.014
+[2026-04-03 10:57:40.633] [info] CMC::computeControls, t = 3.015
+[2026-04-03 10:57:40.646] [info] CMC::computeControls, t = 3.016
+[2026-04-03 10:57:40.662] [info] CMC::computeControls, t = 3.017
+[2026-04-03 10:57:40.676] [info] CMC::computeControls, t = 3.018
+[2026-04-03 10:57:40.687] [info] CMC::computeControls, t = 3.019
+[2026-04-03 10:57:40.699] [info] CMC::computeControls, t = 3.02
+[2026-04-03 10:57:40.710] [info] CMC::computeControls, t = 3.021
+[2026-04-03 10:57:40.722] [info] CMC::computeControls, t = 3.022
+[2026-04-03 10:57:40.735] [info] CMC::computeControls, t = 3.023
+[2026-04-03 10:57:40.747] [info] CMC::computeControls, t = 3.024
+[2026-04-03 10:57:40.758] [info] CMC::computeControls, t = 3.025
+[2026-04-03 10:57:40.773] [info] CMC::computeControls, t = 3.026
+[2026-04-03 10:57:40.785] [info] CMC::computeControls, t = 3.027
+[2026-04-03 10:57:40.796] [info] CMC::computeControls, t = 3.028
+[2026-04-03 10:57:40.808] [info] CMC::computeControls, t = 3.029
+[2026-04-03 10:57:40.819] [info] CMC::computeControls, t = 3.03
+[2026-04-03 10:57:40.831] [info] CMC::computeControls, t = 3.031
+[2026-04-03 10:57:40.842] [info] CMC::computeControls, t = 3.032
+[2026-04-03 10:57:40.853] [info] CMC::computeControls, t = 3.033
+[2026-04-03 10:57:40.864] [info] CMC::computeControls, t = 3.034
+[2026-04-03 10:57:40.876] [info] CMC::computeControls, t = 3.035
+[2026-04-03 10:57:40.886] [info] CMC::computeControls, t = 3.036
+[2026-04-03 10:57:40.897] [info] CMC::computeControls, t = 3.037
+[2026-04-03 10:57:40.908] [info] CMC::computeControls, t = 3.038
+[2026-04-03 10:57:40.918] [info] CMC::computeControls, t = 3.039
+[2026-04-03 10:57:40.933] [info] CMC::computeControls, t = 3.04
+[2026-04-03 10:57:40.947] [info] CMC::computeControls, t = 3.041
+[2026-04-03 10:57:40.958] [info] CMC::computeControls, t = 3.042
+[2026-04-03 10:57:40.973] [info] CMC::computeControls, t = 3.043
+[2026-04-03 10:57:40.985] [info] CMC::computeControls, t = 3.044
+[2026-04-03 10:57:40.996] [info] CMC::computeControls, t = 3.045
+[2026-04-03 10:57:41.008] [info] CMC::computeControls, t = 3.046
+[2026-04-03 10:57:41.020] [info] CMC::computeControls, t = 3.047
+[2026-04-03 10:57:41.037] [info] CMC::computeControls, t = 3.048
+[2026-04-03 10:57:41.050] [info] CMC::computeControls, t = 3.049
+[2026-04-03 10:57:41.065] [info] CMC::computeControls, t = 3.05
+[2026-04-03 10:57:41.084] [info] CMC::computeControls, t = 3.051
+[2026-04-03 10:57:41.100] [info] CMC::computeControls, t = 3.052
+[2026-04-03 10:57:41.119] [info] CMC::computeControls, t = 3.053
+[2026-04-03 10:57:41.143] [info] CMC::computeControls, t = 3.054
+[2026-04-03 10:57:41.164] [info] CMC::computeControls, t = 3.055
+[2026-04-03 10:57:41.184] [info] CMC::computeControls, t = 3.056
+[2026-04-03 10:57:41.205] [info] CMC::computeControls, t = 3.057
+[2026-04-03 10:57:41.222] [info] CMC::computeControls, t = 3.058
+[2026-04-03 10:57:41.239] [info] CMC::computeControls, t = 3.059
+[2026-04-03 10:57:41.253] [info] CMC::computeControls, t = 3.06
+[2026-04-03 10:57:41.267] [info] CMC::computeControls, t = 3.061
+[2026-04-03 10:57:41.282] [info] CMC::computeControls, t = 3.062
+[2026-04-03 10:57:41.297] [info] CMC::computeControls, t = 3.063
+[2026-04-03 10:57:41.312] [info] CMC::computeControls, t = 3.064
+[2026-04-03 10:57:41.323] [info] CMC::computeControls, t = 3.065
+[2026-04-03 10:57:41.338] [info] CMC::computeControls, t = 3.066
+[2026-04-03 10:57:41.354] [info] CMC::computeControls, t = 3.067
+[2026-04-03 10:57:41.368] [info] CMC::computeControls, t = 3.068
+[2026-04-03 10:57:41.382] [info] CMC::computeControls, t = 3.069
+[2026-04-03 10:57:41.395] [info] CMC::computeControls, t = 3.07
+[2026-04-03 10:57:41.407] [info] CMC::computeControls, t = 3.071
+[2026-04-03 10:57:41.420] [info] CMC::computeControls, t = 3.072
+[2026-04-03 10:57:41.432] [info] CMC::computeControls, t = 3.073
+[2026-04-03 10:57:41.444] [info] CMC::computeControls, t = 3.074
+[2026-04-03 10:57:41.457] [info] CMC::computeControls, t = 3.075
+[2026-04-03 10:57:41.469] [info] CMC::computeControls, t = 3.076
+[2026-04-03 10:57:41.482] [info] CMC::computeControls, t = 3.077
+[2026-04-03 10:57:41.524] [info] CMC::computeControls, t = 3.078
+[2026-04-03 10:57:41.555] [info] CMC::computeControls, t = 3.079
+[2026-04-03 10:57:41.579] [info] CMC::computeControls, t = 3.08
+[2026-04-03 10:57:41.595] [info] CMC::computeControls, t = 3.081
+[2026-04-03 10:57:41.611] [info] CMC::computeControls, t = 3.082
+[2026-04-03 10:57:41.625] [info] CMC::computeControls, t = 3.083
+[2026-04-03 10:57:41.643] [info] CMC::computeControls, t = 3.084
+[2026-04-03 10:57:41.659] [info] CMC::computeControls, t = 3.085
+[2026-04-03 10:57:41.677] [info] CMC::computeControls, t = 3.086
+[2026-04-03 10:57:41.692] [info] CMC::computeControls, t = 3.087
+[2026-04-03 10:57:41.706] [info] CMC::computeControls, t = 3.088
+[2026-04-03 10:57:41.720] [info] CMC::computeControls, t = 3.089
+[2026-04-03 10:57:41.733] [info] CMC::computeControls, t = 3.09
+[2026-04-03 10:57:41.747] [info] CMC::computeControls, t = 3.091
+[2026-04-03 10:57:41.760] [info] CMC::computeControls, t = 3.092
+[2026-04-03 10:57:41.773] [info] CMC::computeControls, t = 3.093
+[2026-04-03 10:57:41.795] [info] CMC::computeControls, t = 3.094
+[2026-04-03 10:57:41.817] [info] CMC::computeControls, t = 3.095
+[2026-04-03 10:57:41.841] [info] CMC::computeControls, t = 3.096
+[2026-04-03 10:57:41.857] [info] CMC::computeControls, t = 3.097
+[2026-04-03 10:57:41.877] [info] CMC::computeControls, t = 3.098
+[2026-04-03 10:57:41.891] [info] CMC::computeControls, t = 3.099
+[2026-04-03 10:57:41.905] [info] CMC::computeControls, t = 3.1
+[2026-04-03 10:57:41.921] [info] CMC::computeControls, t = 3.10100
+[2026-04-03 10:57:41.935] [info] CMC::computeControls, t = 3.10200
+[2026-04-03 10:57:41.948] [info] CMC::computeControls, t = 3.10300
+[2026-04-03 10:57:41.962] [info] CMC::computeControls, t = 3.10400
+[2026-04-03 10:57:41.974] [info] CMC::computeControls, t = 3.10500
+[2026-04-03 10:57:41.987] [info] CMC::computeControls, t = 3.10600
+[2026-04-03 10:57:42.001] [info] CMC::computeControls, t = 3.10700
+[2026-04-03 10:57:42.020] [info] CMC::computeControls, t = 3.10800
+[2026-04-03 10:57:42.050] [info] CMC::computeControls, t = 3.10900
+[2026-04-03 10:57:42.074] [info] CMC::computeControls, t = 3.11
+[2026-04-03 10:57:42.090] [info] CMC::computeControls, t = 3.111
+[2026-04-03 10:57:42.108] [info] CMC::computeControls, t = 3.112
+[2026-04-03 10:57:42.123] [info] CMC::computeControls, t = 3.113
+[2026-04-03 10:57:42.141] [info] CMC::computeControls, t = 3.114
+[2026-04-03 10:57:42.158] [info] CMC::computeControls, t = 3.115
+[2026-04-03 10:57:42.173] [info] CMC::computeControls, t = 3.116
+[2026-04-03 10:57:42.191] [info] CMC::computeControls, t = 3.117
+[2026-04-03 10:57:42.211] [info] CMC::computeControls, t = 3.118
+[2026-04-03 10:57:42.230] [info] CMC::computeControls, t = 3.119
+[2026-04-03 10:57:42.252] [info] CMC::computeControls, t = 3.12
+[2026-04-03 10:57:42.272] [info] CMC::computeControls, t = 3.121
+[2026-04-03 10:57:42.289] [info] CMC::computeControls, t = 3.122
+[2026-04-03 10:57:42.308] [info] CMC::computeControls, t = 3.123
+[2026-04-03 10:57:42.325] [info] CMC::computeControls, t = 3.124
+[2026-04-03 10:57:42.342] [info] CMC::computeControls, t = 3.125
+[2026-04-03 10:57:42.355] [info] CMC::computeControls, t = 3.126
+[2026-04-03 10:57:42.369] [info] CMC::computeControls, t = 3.127
+[2026-04-03 10:57:42.384] [info] CMC::computeControls, t = 3.128
+[2026-04-03 10:57:42.403] [info] CMC::computeControls, t = 3.129
+[2026-04-03 10:57:42.424] [info] CMC::computeControls, t = 3.13
+[2026-04-03 10:57:42.444] [info] CMC::computeControls, t = 3.131
+[2026-04-03 10:57:42.463] [info] CMC::computeControls, t = 3.132
+[2026-04-03 10:57:42.480] [info] CMC::computeControls, t = 3.133
+[2026-04-03 10:57:42.504] [info] CMC::computeControls, t = 3.134
+[2026-04-03 10:57:42.523] [info] CMC::computeControls, t = 3.135
+[2026-04-03 10:57:42.546] [info] CMC::computeControls, t = 3.136
+[2026-04-03 10:57:42.565] [info] CMC::computeControls, t = 3.137
+[2026-04-03 10:57:42.581] [info] CMC::computeControls, t = 3.138
+[2026-04-03 10:57:42.602] [info] CMC::computeControls, t = 3.139
+[2026-04-03 10:57:42.617] [info] CMC::computeControls, t = 3.14
+[2026-04-03 10:57:42.638] [info] CMC::computeControls, t = 3.141
+[2026-04-03 10:57:42.659] [info] CMC::computeControls, t = 3.142
+[2026-04-03 10:57:42.676] [info] CMC::computeControls, t = 3.143
+[2026-04-03 10:57:42.693] [info] CMC::computeControls, t = 3.144
+[2026-04-03 10:57:42.713] [info] CMC::computeControls, t = 3.145
+[2026-04-03 10:57:42.736] [info] CMC::computeControls, t = 3.146
+[2026-04-03 10:57:42.759] [info] CMC::computeControls, t = 3.147
+[2026-04-03 10:57:42.780] [info] CMC::computeControls, t = 3.148
+[2026-04-03 10:57:42.802] [info] CMC::computeControls, t = 3.149
+[2026-04-03 10:57:42.824] [info] CMC::computeControls, t = 3.15
+[2026-04-03 10:57:42.849] [info] CMC::computeControls, t = 3.151
+[2026-04-03 10:57:42.871] [info] CMC::computeControls, t = 3.152
+[2026-04-03 10:57:42.888] [info] CMC::computeControls, t = 3.153
+[2026-04-03 10:57:42.909] [info] CMC::computeControls, t = 3.154
+[2026-04-03 10:57:42.926] [info] CMC::computeControls, t = 3.155
+[2026-04-03 10:57:42.942] [info] CMC::computeControls, t = 3.156
+[2026-04-03 10:57:43.024] [info] CMC::computeControls, t = 3.157
+[2026-04-03 10:57:43.195] [error] SimTK Exception thrown at InteriorPointOptimizer.cpp:265:
+  Optimizer failed: Ipopt: Search direction becomes too small (status 3)
+[2026-04-03 10:57:43.195] [error] OPTIMIZATION FAILED...
+[2026-04-03 10:57:43.195] [error] CMC::computeControls: Optimizer could not find a solution.
+Unable to find a feasible solution at time = 3.157.
+Model cannot generate the forces necessary to achieve the target acceleration.
+Possible issues: 1. not all model degrees-of-freedom are actuated, 
+2. there are tracking tasks for locked coordinates, and/or
+3. there are unnecessary control constraints on reserve/residual actuators.
+
+
+[2026-04-03 11:00:45.383] [info] Adding force object set from Z:/home/hudson/Downloads/CMC_Runs/BAA01/Baseline/../../../../rat-hindlimb-model/models/osim/xml/rat_hindlimb_bilateral_rra_actuators.xml
+[2026-04-03 11:00:45.392] [info] Running tool scaled_scaled.
+[2026-04-03 11:00:45.400] [info] 	taskSet size = 16.
+[2026-04-03 11:00:45.402] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:00:45.467] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:00:45.467] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:00:45.471] [warning] A desired points file was not specified.
+[2026-04-03 11:00:45.471] [info] Loading desired kinematics from file 'Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_ik.mot'...
+[2026-04-03 11:00:45.472] [info] Storage: read data file = Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_ik.mot (nr=117 nc=23)
+[2026-04-03 11:00:45.474] [info] Low-pass filtering desired kinematics with a cutoff frequency of 15.0...
+[2026-04-03 11:00:45.488] [cout] [info] MODEL: scaled_scaled
+
+numStates = 44
+numCoordinates = 22
+numSpeeds = 22
+numActuators = 16
+numBodies = 9
+numConstraints = 0
+numProbes = 0
+
+ANALYSES (total: 2)
+analysis[0] = Un-named analysis.
+analysis[1] = Un-named analysis.
+
+BODIES (total: 9)
+body[0] = spine. mass: 0.103872
+              moments of inertia:  ~[3.34382e-06,3.34382e-06,3.34382e-06]
+              products of inertia: ~[0,0,0]
+body[1] = pelvis_r. mass: 0.0138605
+              moments of inertia:  ~[1.86116e-06,1.77382e-06,1.86116e-06]
+              products of inertia: ~[0,0,0]
+body[2] = femur_r. mass: 0.00604856
+              moments of inertia:  ~[5.32884e-07,4.04428e-07,6.97156e-07]
+              products of inertia: ~[0,0,0]
+body[3] = tibia_r. mass: 0.00391398
+              moments of inertia:  ~[4.96367e-07,1.39711e-07,4.98772e-07]
+              products of inertia: ~[0,0,0]
+body[4] = foot_r. mass: 0.00150287
+              moments of inertia:  ~[3.15039e-08,4.24762e-09,2.98504e-07]
+              products of inertia: ~[0,0,0]
+body[5] = pelvis_l. mass: 0.0138605
+              moments of inertia:  ~[1.86116e-06,1.77382e-06,1.86116e-06]
+              products of inertia: ~[0,-0,-0]
+body[6] = femur_l. mass: 0.00604856
+              moments of inertia:  ~[5.49935e-07,4.17369e-07,7.19463e-07]
+              products of inertia: ~[0,0,0]
+body[7] = tibia_l. mass: 0.00391398
+              moments of inertia:  ~[4.96367e-07,1.39711e-07,4.98772e-07]
+              products of inertia: ~[0,0,0]
+body[8] = foot_l. mass: 0.00150287
+              moments of inertia:  ~[3.15039e-08,4.24762e-09,2.98504e-08]
+              products of inertia: ~[0,0,0]
+
+JOINTS (total: 9)
+joint[0] = ground_spine. parent: ground_offset, child: spine_offset
+joint[1] = sacroiliac_r. parent: spine_offset, child: pelvis_r_offset
+joint[2] = hip_r. parent: pelvis_r_offset, child: femur_r_offset
+joint[3] = knee_r. parent: femur_r_offset, child: tibia_r_offset
+joint[4] = ankle_r. parent: tibia_r_offset, child: foot_r_offset
+joint[5] = sacroiliac_l. parent: spine_offset, child: pelvis_l_offset
+joint[6] = hip_l. parent: pelvis_l_offset, child: femur_l_offset
+joint[7] = knee_l. parent: femur_l_offset, child: tibia_l_offset
+joint[8] = ankle_l. parent: tibia_l_offset, child: foot_l_offset
+
+ACTUATORS (total: 16)
+actuator[0] = sacrum_pitch_reserve
+actuator[1] = sacrum_roll_reserve
+actuator[2] = sacrum_yaw_reserve
+actuator[3] = sacrum_x_reserve
+actuator[4] = sacrum_y_reserve
+actuator[5] = sacrum_z_reserve
+actuator[6] = hip_r_flx_reserve
+actuator[7] = hip_r_add_reserve
+actuator[8] = hip_r_int_reserve
+actuator[9] = knee_r_flx_reserve
+actuator[10] = ankle_r_flx_reserve
+actuator[11] = hip_l_flx_reserve
+actuator[12] = hip_l_add_reserve
+actuator[13] = hip_l_int_reserve
+actuator[14] = knee_l_flx_reserve
+actuator[15] = ankle_l_flx_reserve
+
+STATES (total: 44)
+y[0] = /jointset/ground_spine/sacrum_pitch/value
+y[1] = /jointset/ground_spine/sacrum_pitch/speed
+y[2] = /jointset/ground_spine/sacrum_roll/value
+y[3] = /jointset/ground_spine/sacrum_roll/speed
+y[4] = /jointset/ground_spine/sacrum_yaw/value
+y[5] = /jointset/ground_spine/sacrum_yaw/speed
+y[6] = /jointset/ground_spine/sacrum_x/value
+y[7] = /jointset/ground_spine/sacrum_x/speed
+y[8] = /jointset/ground_spine/sacrum_y/value
+y[9] = /jointset/ground_spine/sacrum_y/speed
+y[10] = /jointset/ground_spine/sacrum_z/value
+y[11] = /jointset/ground_spine/sacrum_z/speed
+y[12] = /jointset/sacroiliac_r/sacroiliac_r_flx/value
+y[13] = /jointset/sacroiliac_r/sacroiliac_r_flx/speed
+y[14] = /jointset/hip_r/hip_r_flx/value
+y[15] = /jointset/hip_r/hip_r_flx/speed
+y[16] = /jointset/hip_r/hip_r_add/value
+y[17] = /jointset/hip_r/hip_r_add/speed
+y[18] = /jointset/hip_r/hip_r_int/value
+y[19] = /jointset/hip_r/hip_r_int/speed
+y[20] = /jointset/knee_r/knee_r_flx/value
+y[21] = /jointset/knee_r/knee_r_flx/speed
+y[22] = /jointset/ankle_r/ankle_r_flx/value
+y[23] = /jointset/ankle_r/ankle_r_flx/speed
+y[24] = /jointset/ankle_r/ankle_r_add/value
+y[25] = /jointset/ankle_r/ankle_r_add/speed
+y[26] = /jointset/ankle_r/ankle_r_int/value
+y[27] = /jointset/ankle_r/ankle_r_int/speed
+y[28] = /jointset/sacroiliac_l/sacroiliac_l_flx/value
+y[29] = /jointset/sacroiliac_l/sacroiliac_l_flx/speed
+y[30] = /jointset/hip_l/hip_l_flx/value
+y[31] = /jointset/hip_l/hip_l_flx/speed
+y[32] = /jointset/hip_l/hip_l_add/value
+y[33] = /jointset/hip_l/hip_l_add/speed
+y[34] = /jointset/hip_l/hip_l_int/value
+y[35] = /jointset/hip_l/hip_l_int/speed
+y[36] = /jointset/knee_l/knee_l_flx/value
+y[37] = /jointset/knee_l/knee_l_flx/speed
+y[38] = /jointset/ankle_l/ankle_l_flx/value
+y[39] = /jointset/ankle_l/ankle_l_flx/speed
+y[40] = /jointset/ankle_l/ankle_l_add/value
+y[41] = /jointset/ankle_l/ankle_l_add/speed
+y[42] = /jointset/ankle_l/ankle_l_int/value
+y[43] = /jointset/ankle_l/ankle_l_int/speed
+
+[2026-04-03 11:00:45.545] [warning] Coordinate.setValue:  coordinate sacroiliac_r_flx is locked. Unable to change its value.
+[2026-04-03 11:00:45.545] [warning] Coordinate.setValue:  coordinate ankle_r_add is locked. Unable to change its value.
+[2026-04-03 11:00:45.545] [warning] Coordinate.setValue:  coordinate sacroiliac_l_flx is locked. Unable to change its value.
+[2026-04-03 11:00:45.545] [warning] Coordinate.setValue:  coordinate ankle_l_add is locked. Unable to change its value.
+[2026-04-03 11:00:45.556] [info] Requested COM adjustment time range 2.87 to 3.45, clamped to nearest available data times: 2.87 to 3.45.
+[2026-04-03 11:00:45.556] [info] Computing average residuals between 2.87 and 3.45...
+[2026-04-03 11:00:45.565] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:00:45.627] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:00:45.627] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:00:45.633] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:00:45.695] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:00:45.695] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:00:46.334] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:00:46.412] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:00:46.412] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:00:46.419] [info] Computing average residuals between 2.87 and 3.45...
+[2026-04-03 11:00:46.430] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:00:46.521] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:00:46.521] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:00:46.529] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:00:46.593] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:00:46.593] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:00:47.185] [info] Constructing function set for tracking desired kinematics...
+[2026-04-03 11:00:47.304] [warning] No Actuation analysis found in analysis set, adding one...
+[2026-04-03 11:00:47.305] [warning] No Kinematics analysis found in analysis set, adding one...
+[2026-04-03 11:00:47.306] [info] Using the generalized coordinates specified in 'Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_ik.mot' to set the initial configuration.
+[2026-04-03 11:00:47.333] [warning] Coordinate.setValue:  coordinate sacroiliac_r_flx is locked. Unable to change its value.
+[2026-04-03 11:00:47.333] [warning] Coordinate.setValue:  coordinate ankle_r_add is locked. Unable to change its value.
+[2026-04-03 11:00:47.333] [warning] Coordinate.setValue:  coordinate sacroiliac_l_flx is locked. Unable to change its value.
+[2026-04-03 11:00:47.333] [warning] Coordinate.setValue:  coordinate ankle_l_add is locked. Unable to change its value.
+[2026-04-03 11:00:47.334] [info] Using IPOPT optimizer algorithm.
+[2026-04-03 11:00:47.334] [info] Setting optimizer print level to 0.
+[2026-04-03 11:00:47.334] [info] Setting optimizer convergence tolerance to 1.0e-05.
+[2026-04-03 11:00:47.334] [info] Setting optimizer maximum iterations to 2000.
+[2026-04-03 11:00:47.334] [info] Setting cmc controller to not use verbose printing.
+
+[2026-04-03 11:00:47.334] [info] CMC::computeControls, t = 2.87
+[2026-04-03 11:00:47.776] [info] --------------------------------------------
+[2026-04-03 11:00:47.776] [info] Using CMC to track the specified kinematics:
+[2026-04-03 11:00:47.776] [info] --------------------------------------------
+[2026-04-03 11:00:47.776] [info]  -- Integrating from 2.87 to 3.45
+[2026-04-03 11:00:47.776] [info]  -- Start time = Fri Apr  3 11:00:47 2026
+[2026-04-03 11:00:47.776] [info] --------------------------------------------
+[2026-04-03 11:00:47.776] [info] 
+[2026-04-03 11:00:47.778] [info] CMC::computeControls, t = 2.87
+[2026-04-03 11:00:47.798] [info] CMC::computeControls, t = 2.871
+[2026-04-03 11:00:47.799] [warning] Coordinate.setValue:  coordinate ankle_r_int is locked. Unable to change its value.
+[2026-04-03 11:00:47.799] [warning] Coordinate.setValue:  coordinate ankle_l_int is locked. Unable to change its value.
+[2026-04-03 11:00:47.813] [info] CMC::computeControls, t = 2.872
+[2026-04-03 11:00:47.827] [info] CMC::computeControls, t = 2.873
+[2026-04-03 11:00:47.840] [info] CMC::computeControls, t = 2.874
+[2026-04-03 11:00:47.852] [info] CMC::computeControls, t = 2.875
+[2026-04-03 11:00:47.865] [info] CMC::computeControls, t = 2.876
+[2026-04-03 11:00:47.877] [info] CMC::computeControls, t = 2.877
+[2026-04-03 11:00:47.888] [info] CMC::computeControls, t = 2.878
+[2026-04-03 11:00:47.900] [info] CMC::computeControls, t = 2.879
+[2026-04-03 11:00:47.911] [info] CMC::computeControls, t = 2.88
+[2026-04-03 11:00:47.922] [info] CMC::computeControls, t = 2.881
+[2026-04-03 11:00:47.933] [info] CMC::computeControls, t = 2.882
+[2026-04-03 11:00:47.945] [info] CMC::computeControls, t = 2.883
+[2026-04-03 11:00:47.955] [info] CMC::computeControls, t = 2.884
+[2026-04-03 11:00:47.966] [info] CMC::computeControls, t = 2.885
+[2026-04-03 11:00:47.977] [info] CMC::computeControls, t = 2.886
+[2026-04-03 11:00:47.990] [info] CMC::computeControls, t = 2.887
+[2026-04-03 11:00:48.002] [info] CMC::computeControls, t = 2.888
+[2026-04-03 11:00:48.015] [info] CMC::computeControls, t = 2.889
+[2026-04-03 11:00:48.025] [info] CMC::computeControls, t = 2.89
+[2026-04-03 11:00:48.036] [info] CMC::computeControls, t = 2.891
+[2026-04-03 11:00:48.047] [info] CMC::computeControls, t = 2.892
+[2026-04-03 11:00:48.060] [info] CMC::computeControls, t = 2.893
+[2026-04-03 11:00:48.072] [info] CMC::computeControls, t = 2.894
+[2026-04-03 11:00:48.083] [info] CMC::computeControls, t = 2.895
+[2026-04-03 11:00:48.095] [info] CMC::computeControls, t = 2.896
+[2026-04-03 11:00:48.105] [info] CMC::computeControls, t = 2.897
+[2026-04-03 11:00:48.117] [info] CMC::computeControls, t = 2.898
+[2026-04-03 11:00:48.128] [info] CMC::computeControls, t = 2.899
+[2026-04-03 11:00:48.139] [info] CMC::computeControls, t = 2.9
+[2026-04-03 11:00:48.150] [info] CMC::computeControls, t = 2.90100
+[2026-04-03 11:00:48.162] [info] CMC::computeControls, t = 2.90200
+[2026-04-03 11:00:48.174] [info] CMC::computeControls, t = 2.90300
+[2026-04-03 11:00:48.187] [info] CMC::computeControls, t = 2.90400
+[2026-04-03 11:00:48.204] [info] CMC::computeControls, t = 2.90500
+[2026-04-03 11:00:48.218] [info] CMC::computeControls, t = 2.90600
+[2026-04-03 11:00:48.229] [info] CMC::computeControls, t = 2.90700
+[2026-04-03 11:00:48.241] [info] CMC::computeControls, t = 2.90800
+[2026-04-03 11:00:48.253] [info] CMC::computeControls, t = 2.90900
+[2026-04-03 11:00:48.265] [info] CMC::computeControls, t = 2.91
+[2026-04-03 11:00:48.279] [info] CMC::computeControls, t = 2.911
+[2026-04-03 11:00:48.294] [info] CMC::computeControls, t = 2.912
+[2026-04-03 11:00:48.306] [info] CMC::computeControls, t = 2.913
+[2026-04-03 11:00:48.319] [info] CMC::computeControls, t = 2.914
+[2026-04-03 11:00:48.333] [info] CMC::computeControls, t = 2.915
+[2026-04-03 11:00:48.345] [info] CMC::computeControls, t = 2.916
+[2026-04-03 11:00:48.355] [info] CMC::computeControls, t = 2.917
+[2026-04-03 11:00:48.366] [info] CMC::computeControls, t = 2.918
+[2026-04-03 11:00:48.377] [info] CMC::computeControls, t = 2.919
+[2026-04-03 11:00:48.388] [info] CMC::computeControls, t = 2.92
+[2026-04-03 11:00:48.399] [info] CMC::computeControls, t = 2.921
+[2026-04-03 11:00:48.411] [info] CMC::computeControls, t = 2.922
+[2026-04-03 11:00:48.423] [info] CMC::computeControls, t = 2.923
+[2026-04-03 11:00:48.439] [info] CMC::computeControls, t = 2.924
+[2026-04-03 11:00:48.450] [info] CMC::computeControls, t = 2.925
+[2026-04-03 11:00:48.461] [info] CMC::computeControls, t = 2.926
+[2026-04-03 11:00:48.472] [info] CMC::computeControls, t = 2.927
+[2026-04-03 11:00:48.485] [info] CMC::computeControls, t = 2.928
+[2026-04-03 11:00:48.498] [info] CMC::computeControls, t = 2.929
+[2026-04-03 11:00:48.510] [info] CMC::computeControls, t = 2.93
+[2026-04-03 11:00:48.521] [info] CMC::computeControls, t = 2.931
+[2026-04-03 11:00:48.532] [info] CMC::computeControls, t = 2.932
+[2026-04-03 11:00:48.544] [info] CMC::computeControls, t = 2.933
+[2026-04-03 11:00:48.555] [info] CMC::computeControls, t = 2.934
+[2026-04-03 11:00:48.566] [info] CMC::computeControls, t = 2.935
+[2026-04-03 11:00:48.577] [info] CMC::computeControls, t = 2.936
+[2026-04-03 11:00:48.590] [info] CMC::computeControls, t = 2.937
+[2026-04-03 11:00:48.601] [info] CMC::computeControls, t = 2.938
+[2026-04-03 11:00:48.613] [info] CMC::computeControls, t = 2.939
+[2026-04-03 11:00:48.624] [info] CMC::computeControls, t = 2.94
+[2026-04-03 11:00:48.634] [info] CMC::computeControls, t = 2.941
+[2026-04-03 11:00:48.645] [info] CMC::computeControls, t = 2.942
+[2026-04-03 11:00:48.657] [info] CMC::computeControls, t = 2.943
+[2026-04-03 11:00:48.668] [info] CMC::computeControls, t = 2.944
+[2026-04-03 11:00:48.679] [info] CMC::computeControls, t = 2.945
+[2026-04-03 11:00:48.692] [info] CMC::computeControls, t = 2.946
+[2026-04-03 11:00:48.704] [info] CMC::computeControls, t = 2.947
+[2026-04-03 11:00:48.718] [info] CMC::computeControls, t = 2.948
+[2026-04-03 11:00:48.730] [info] CMC::computeControls, t = 2.949
+[2026-04-03 11:00:48.741] [info] CMC::computeControls, t = 2.95
+[2026-04-03 11:00:48.752] [info] CMC::computeControls, t = 2.951
+[2026-04-03 11:00:48.763] [info] CMC::computeControls, t = 2.952
+[2026-04-03 11:00:48.773] [info] CMC::computeControls, t = 2.953
+[2026-04-03 11:00:48.784] [info] CMC::computeControls, t = 2.954
+[2026-04-03 11:00:48.794] [info] CMC::computeControls, t = 2.955
+[2026-04-03 11:00:48.805] [info] CMC::computeControls, t = 2.956
+[2026-04-03 11:00:48.816] [info] CMC::computeControls, t = 2.957
+[2026-04-03 11:00:48.827] [info] CMC::computeControls, t = 2.958
+[2026-04-03 11:00:48.837] [info] CMC::computeControls, t = 2.959
+[2026-04-03 11:00:48.850] [info] CMC::computeControls, t = 2.96
+[2026-04-03 11:00:48.860] [info] CMC::computeControls, t = 2.961
+[2026-04-03 11:00:48.870] [info] CMC::computeControls, t = 2.962
+[2026-04-03 11:00:48.884] [info] CMC::computeControls, t = 2.963
+[2026-04-03 11:00:48.895] [info] CMC::computeControls, t = 2.964
+[2026-04-03 11:00:48.905] [info] CMC::computeControls, t = 2.965
+[2026-04-03 11:00:48.919] [info] CMC::computeControls, t = 2.966
+[2026-04-03 11:00:48.930] [info] CMC::computeControls, t = 2.967
+[2026-04-03 11:00:48.941] [info] CMC::computeControls, t = 2.968
+[2026-04-03 11:00:48.952] [info] CMC::computeControls, t = 2.969
+[2026-04-03 11:00:48.963] [info] CMC::computeControls, t = 2.97
+[2026-04-03 11:00:48.974] [info] CMC::computeControls, t = 2.971
+[2026-04-03 11:00:48.987] [info] CMC::computeControls, t = 2.972
+[2026-04-03 11:00:48.998] [info] CMC::computeControls, t = 2.973
+[2026-04-03 11:00:49.014] [info] CMC::computeControls, t = 2.974
+[2026-04-03 11:00:49.026] [info] CMC::computeControls, t = 2.975
+[2026-04-03 11:00:49.038] [info] CMC::computeControls, t = 2.976
+[2026-04-03 11:00:49.050] [info] CMC::computeControls, t = 2.977
+[2026-04-03 11:00:49.062] [info] CMC::computeControls, t = 2.978
+[2026-04-03 11:00:49.074] [info] CMC::computeControls, t = 2.979
+[2026-04-03 11:00:49.088] [info] CMC::computeControls, t = 2.98
+[2026-04-03 11:00:49.101] [info] CMC::computeControls, t = 2.981
+[2026-04-03 11:00:49.116] [info] CMC::computeControls, t = 2.982
+[2026-04-03 11:00:49.129] [info] CMC::computeControls, t = 2.983
+[2026-04-03 11:00:49.141] [info] CMC::computeControls, t = 2.984
+[2026-04-03 11:00:49.154] [info] CMC::computeControls, t = 2.985
+[2026-04-03 11:00:49.165] [info] CMC::computeControls, t = 2.986
+[2026-04-03 11:00:49.177] [info] CMC::computeControls, t = 2.987
+[2026-04-03 11:00:49.189] [info] CMC::computeControls, t = 2.988
+[2026-04-03 11:00:49.203] [info] CMC::computeControls, t = 2.989
+[2026-04-03 11:00:49.217] [info] CMC::computeControls, t = 2.99
+[2026-04-03 11:00:49.229] [info] CMC::computeControls, t = 2.991
+[2026-04-03 11:00:49.240] [info] CMC::computeControls, t = 2.992
+[2026-04-03 11:00:49.252] [info] CMC::computeControls, t = 2.993
+[2026-04-03 11:00:49.263] [info] CMC::computeControls, t = 2.994
+[2026-04-03 11:00:49.273] [info] CMC::computeControls, t = 2.995
+[2026-04-03 11:00:49.284] [info] CMC::computeControls, t = 2.996
+[2026-04-03 11:00:49.295] [info] CMC::computeControls, t = 2.997
+[2026-04-03 11:00:49.307] [info] CMC::computeControls, t = 2.998
+[2026-04-03 11:00:49.318] [info] CMC::computeControls, t = 2.999
+[2026-04-03 11:00:49.329] [info] CMC::computeControls, t = 3.0
+[2026-04-03 11:00:49.340] [info] CMC::computeControls, t = 3.00100
+[2026-04-03 11:00:49.350] [info] CMC::computeControls, t = 3.00200
+[2026-04-03 11:00:49.362] [info] CMC::computeControls, t = 3.00300
+[2026-04-03 11:00:49.374] [info] CMC::computeControls, t = 3.00400
+[2026-04-03 11:00:49.387] [info] CMC::computeControls, t = 3.00500
+[2026-04-03 11:00:49.400] [info] CMC::computeControls, t = 3.00600
+[2026-04-03 11:00:49.415] [info] CMC::computeControls, t = 3.00700
+[2026-04-03 11:00:49.427] [info] CMC::computeControls, t = 3.00800
+[2026-04-03 11:00:49.439] [info] CMC::computeControls, t = 3.00900
+[2026-04-03 11:00:49.451] [info] CMC::computeControls, t = 3.01
+[2026-04-03 11:00:49.461] [info] CMC::computeControls, t = 3.011
+[2026-04-03 11:00:49.472] [info] CMC::computeControls, t = 3.012
+[2026-04-03 11:00:49.483] [info] CMC::computeControls, t = 3.013
+[2026-04-03 11:00:49.494] [info] CMC::computeControls, t = 3.014
+[2026-04-03 11:00:49.505] [info] CMC::computeControls, t = 3.015
+[2026-04-03 11:00:49.515] [info] CMC::computeControls, t = 3.016
+[2026-04-03 11:00:49.525] [info] CMC::computeControls, t = 3.017
+[2026-04-03 11:00:49.536] [info] CMC::computeControls, t = 3.018
+[2026-04-03 11:00:49.547] [info] CMC::computeControls, t = 3.019
+[2026-04-03 11:00:49.557] [info] CMC::computeControls, t = 3.02
+[2026-04-03 11:00:49.568] [info] CMC::computeControls, t = 3.021
+[2026-04-03 11:00:49.580] [info] CMC::computeControls, t = 3.022
+[2026-04-03 11:00:49.593] [info] CMC::computeControls, t = 3.023
+[2026-04-03 11:00:49.605] [info] CMC::computeControls, t = 3.024
+[2026-04-03 11:00:49.615] [info] CMC::computeControls, t = 3.025
+[2026-04-03 11:00:49.626] [info] CMC::computeControls, t = 3.026
+[2026-04-03 11:00:49.639] [info] CMC::computeControls, t = 3.027
+[2026-04-03 11:00:49.650] [info] CMC::computeControls, t = 3.028
+[2026-04-03 11:00:49.662] [info] CMC::computeControls, t = 3.029
+[2026-04-03 11:00:49.673] [info] CMC::computeControls, t = 3.03
+[2026-04-03 11:00:49.685] [info] CMC::computeControls, t = 3.031
+[2026-04-03 11:00:49.696] [info] CMC::computeControls, t = 3.032
+[2026-04-03 11:00:49.708] [info] CMC::computeControls, t = 3.033
+[2026-04-03 11:00:49.718] [info] CMC::computeControls, t = 3.034
+[2026-04-03 11:00:49.729] [info] CMC::computeControls, t = 3.035
+[2026-04-03 11:00:49.739] [info] CMC::computeControls, t = 3.036
+[2026-04-03 11:00:49.749] [info] CMC::computeControls, t = 3.037
+[2026-04-03 11:00:49.761] [info] CMC::computeControls, t = 3.038
+[2026-04-03 11:00:49.771] [info] CMC::computeControls, t = 3.039
+[2026-04-03 11:00:49.785] [info] CMC::computeControls, t = 3.04
+[2026-04-03 11:00:49.797] [info] CMC::computeControls, t = 3.041
+[2026-04-03 11:00:49.809] [info] CMC::computeControls, t = 3.042
+[2026-04-03 11:00:49.822] [info] CMC::computeControls, t = 3.043
+[2026-04-03 11:00:49.833] [info] CMC::computeControls, t = 3.044
+[2026-04-03 11:00:49.845] [info] CMC::computeControls, t = 3.045
+[2026-04-03 11:00:49.855] [info] CMC::computeControls, t = 3.046
+[2026-04-03 11:00:49.865] [info] CMC::computeControls, t = 3.047
+[2026-04-03 11:00:49.877] [info] CMC::computeControls, t = 3.048
+[2026-04-03 11:00:49.891] [info] CMC::computeControls, t = 3.049
+[2026-04-03 11:00:49.905] [info] CMC::computeControls, t = 3.05
+[2026-04-03 11:00:49.922] [info] CMC::computeControls, t = 3.051
+[2026-04-03 11:00:49.936] [info] CMC::computeControls, t = 3.052
+[2026-04-03 11:00:49.954] [info] CMC::computeControls, t = 3.053
+[2026-04-03 11:00:49.973] [info] CMC::computeControls, t = 3.054
+[2026-04-03 11:00:49.993] [info] CMC::computeControls, t = 3.055
+[2026-04-03 11:00:50.011] [info] CMC::computeControls, t = 3.056
+[2026-04-03 11:00:50.026] [info] CMC::computeControls, t = 3.057
+[2026-04-03 11:00:50.039] [info] CMC::computeControls, t = 3.058
+[2026-04-03 11:00:50.052] [info] CMC::computeControls, t = 3.059
+[2026-04-03 11:00:50.064] [info] CMC::computeControls, t = 3.06
+[2026-04-03 11:00:50.075] [info] CMC::computeControls, t = 3.061
+[2026-04-03 11:00:50.091] [info] CMC::computeControls, t = 3.062
+[2026-04-03 11:00:50.106] [info] CMC::computeControls, t = 3.063
+[2026-04-03 11:00:50.120] [info] CMC::computeControls, t = 3.064
+[2026-04-03 11:00:50.131] [info] CMC::computeControls, t = 3.065
+[2026-04-03 11:00:50.142] [info] CMC::computeControls, t = 3.066
+[2026-04-03 11:00:50.153] [info] CMC::computeControls, t = 3.067
+[2026-04-03 11:00:50.164] [info] CMC::computeControls, t = 3.068
+[2026-04-03 11:00:50.175] [info] CMC::computeControls, t = 3.069
+[2026-04-03 11:00:50.186] [info] CMC::computeControls, t = 3.07
+[2026-04-03 11:00:50.197] [info] CMC::computeControls, t = 3.071
+[2026-04-03 11:00:50.208] [info] CMC::computeControls, t = 3.072
+[2026-04-03 11:00:50.218] [info] CMC::computeControls, t = 3.073
+[2026-04-03 11:00:50.229] [info] CMC::computeControls, t = 3.074
+[2026-04-03 11:00:50.240] [info] CMC::computeControls, t = 3.075
+[2026-04-03 11:00:50.251] [info] CMC::computeControls, t = 3.076
+[2026-04-03 11:00:50.262] [info] CMC::computeControls, t = 3.077
+[2026-04-03 11:00:50.298] [info] CMC::computeControls, t = 3.078
+[2026-04-03 11:00:50.323] [info] CMC::computeControls, t = 3.079
+[2026-04-03 11:00:50.339] [info] CMC::computeControls, t = 3.08
+[2026-04-03 11:00:50.354] [info] CMC::computeControls, t = 3.081
+[2026-04-03 11:00:50.368] [info] CMC::computeControls, t = 3.082
+[2026-04-03 11:00:50.380] [info] CMC::computeControls, t = 3.083
+[2026-04-03 11:00:50.396] [info] CMC::computeControls, t = 3.084
+[2026-04-03 11:00:50.409] [info] CMC::computeControls, t = 3.085
+[2026-04-03 11:00:50.421] [info] CMC::computeControls, t = 3.086
+[2026-04-03 11:00:50.437] [info] CMC::computeControls, t = 3.087
+[2026-04-03 11:00:50.451] [info] CMC::computeControls, t = 3.088
+[2026-04-03 11:00:50.465] [info] CMC::computeControls, t = 3.089
+[2026-04-03 11:00:50.479] [info] CMC::computeControls, t = 3.09
+[2026-04-03 11:00:50.493] [info] CMC::computeControls, t = 3.091
+[2026-04-03 11:00:50.507] [info] CMC::computeControls, t = 3.092
+[2026-04-03 11:00:50.521] [info] CMC::computeControls, t = 3.093
+[2026-04-03 11:00:50.535] [info] CMC::computeControls, t = 3.094
+[2026-04-03 11:00:50.549] [info] CMC::computeControls, t = 3.095
+[2026-04-03 11:00:50.563] [info] CMC::computeControls, t = 3.096
+[2026-04-03 11:00:50.576] [info] CMC::computeControls, t = 3.097
+[2026-04-03 11:00:50.593] [info] CMC::computeControls, t = 3.098
+[2026-04-03 11:00:50.606] [info] CMC::computeControls, t = 3.099
+[2026-04-03 11:00:50.621] [info] CMC::computeControls, t = 3.1
+[2026-04-03 11:00:50.633] [info] CMC::computeControls, t = 3.10100
+[2026-04-03 11:00:50.646] [info] CMC::computeControls, t = 3.10200
+[2026-04-03 11:00:50.660] [info] CMC::computeControls, t = 3.10300
+[2026-04-03 11:00:50.672] [info] CMC::computeControls, t = 3.10400
+[2026-04-03 11:00:50.685] [info] CMC::computeControls, t = 3.10500
+[2026-04-03 11:00:50.697] [info] CMC::computeControls, t = 3.10600
+[2026-04-03 11:00:50.709] [info] CMC::computeControls, t = 3.10700
+[2026-04-03 11:00:50.720] [info] CMC::computeControls, t = 3.10800
+[2026-04-03 11:00:50.732] [info] CMC::computeControls, t = 3.10900
+[2026-04-03 11:00:50.744] [info] CMC::computeControls, t = 3.11
+[2026-04-03 11:00:50.757] [info] CMC::computeControls, t = 3.111
+[2026-04-03 11:00:50.768] [info] CMC::computeControls, t = 3.112
+[2026-04-03 11:00:50.782] [info] CMC::computeControls, t = 3.113
+[2026-04-03 11:00:50.795] [info] CMC::computeControls, t = 3.114
+[2026-04-03 11:00:50.809] [info] CMC::computeControls, t = 3.115
+[2026-04-03 11:00:50.821] [info] CMC::computeControls, t = 3.116
+[2026-04-03 11:00:50.834] [info] CMC::computeControls, t = 3.117
+[2026-04-03 11:00:50.847] [info] CMC::computeControls, t = 3.118
+[2026-04-03 11:00:50.860] [info] CMC::computeControls, t = 3.119
+[2026-04-03 11:00:50.872] [info] CMC::computeControls, t = 3.12
+[2026-04-03 11:00:50.888] [info] CMC::computeControls, t = 3.121
+[2026-04-03 11:00:50.901] [info] CMC::computeControls, t = 3.122
+[2026-04-03 11:00:50.914] [info] CMC::computeControls, t = 3.123
+[2026-04-03 11:00:50.927] [info] CMC::computeControls, t = 3.124
+[2026-04-03 11:00:50.938] [info] CMC::computeControls, t = 3.125
+[2026-04-03 11:00:50.949] [info] CMC::computeControls, t = 3.126
+[2026-04-03 11:00:50.961] [info] CMC::computeControls, t = 3.127
+[2026-04-03 11:00:50.973] [info] CMC::computeControls, t = 3.128
+[2026-04-03 11:00:50.987] [info] CMC::computeControls, t = 3.129
+[2026-04-03 11:00:51.000] [info] CMC::computeControls, t = 3.13
+[2026-04-03 11:00:51.014] [info] CMC::computeControls, t = 3.131
+[2026-04-03 11:00:51.027] [info] CMC::computeControls, t = 3.132
+[2026-04-03 11:00:51.039] [info] CMC::computeControls, t = 3.133
+[2026-04-03 11:00:51.051] [info] CMC::computeControls, t = 3.134
+[2026-04-03 11:00:51.063] [info] CMC::computeControls, t = 3.135
+[2026-04-03 11:00:51.075] [info] CMC::computeControls, t = 3.136
+[2026-04-03 11:00:51.089] [info] CMC::computeControls, t = 3.137
+[2026-04-03 11:00:51.102] [info] CMC::computeControls, t = 3.138
+[2026-04-03 11:00:51.115] [info] CMC::computeControls, t = 3.139
+[2026-04-03 11:00:51.127] [info] CMC::computeControls, t = 3.14
+[2026-04-03 11:00:51.140] [info] CMC::computeControls, t = 3.141
+[2026-04-03 11:00:51.152] [info] CMC::computeControls, t = 3.142
+[2026-04-03 11:00:51.166] [info] CMC::computeControls, t = 3.143
+[2026-04-03 11:00:51.178] [info] CMC::computeControls, t = 3.144
+[2026-04-03 11:00:51.194] [info] CMC::computeControls, t = 3.145
+[2026-04-03 11:00:51.207] [info] CMC::computeControls, t = 3.146
+[2026-04-03 11:00:51.219] [info] CMC::computeControls, t = 3.147
+[2026-04-03 11:00:51.231] [info] CMC::computeControls, t = 3.148
+[2026-04-03 11:00:51.243] [info] CMC::computeControls, t = 3.149
+[2026-04-03 11:00:51.254] [info] CMC::computeControls, t = 3.15
+[2026-04-03 11:00:51.265] [info] CMC::computeControls, t = 3.151
+[2026-04-03 11:00:51.277] [info] CMC::computeControls, t = 3.152
+[2026-04-03 11:00:51.288] [info] CMC::computeControls, t = 3.153
+[2026-04-03 11:00:51.300] [info] CMC::computeControls, t = 3.154
+[2026-04-03 11:00:51.312] [info] CMC::computeControls, t = 3.155
+[2026-04-03 11:00:51.323] [info] CMC::computeControls, t = 3.156
+[2026-04-03 11:00:51.376] [info] CMC::computeControls, t = 3.157
+[2026-04-03 11:00:51.501] [error] SimTK Exception thrown at InteriorPointOptimizer.cpp:265:
+  Optimizer failed: Ipopt: Search direction becomes too small (status 3)
+[2026-04-03 11:00:51.501] [error] OPTIMIZATION FAILED...
+[2026-04-03 11:00:51.501] [error] CMC::computeControls: Optimizer could not find a solution.
+Unable to find a feasible solution at time = 3.157.
+Model cannot generate the forces necessary to achieve the target acceleration.
+Possible issues: 1. not all model degrees-of-freedom are actuated, 
+2. there are tracking tasks for locked coordinates, and/or
+3. there are unnecessary control constraints on reserve/residual actuators.
+
+
+[2026-04-03 11:02:34.524] [info] Adding force object set from Z:/home/hudson/Downloads/CMC_Runs/BAA01/Baseline/../../../../rat-hindlimb-model/models/osim/xml/rat_hindlimb_bilateral_rra_actuators.xml
+[2026-04-03 11:02:34.532] [info] Running tool scaled_scaled.
+[2026-04-03 11:02:34.543] [info] 	taskSet size = 16.
+[2026-04-03 11:02:34.548] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:02:34.612] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:02:34.613] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:02:34.617] [warning] A desired points file was not specified.
+[2026-04-03 11:02:34.617] [info] Loading desired kinematics from file 'Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_ik.mot'...
+[2026-04-03 11:02:34.617] [info] Storage: read data file = Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_ik.mot (nr=117 nc=23)
+[2026-04-03 11:02:34.620] [info] Low-pass filtering desired kinematics with a cutoff frequency of 15.0...
+[2026-04-03 11:02:34.631] [cout] [info] MODEL: scaled_scaled
+
+numStates = 44
+numCoordinates = 22
+numSpeeds = 22
+numActuators = 16
+numBodies = 9
+numConstraints = 0
+numProbes = 0
+
+ANALYSES (total: 2)
+analysis[0] = Un-named analysis.
+analysis[1] = Un-named analysis.
+
+BODIES (total: 9)
+body[0] = spine. mass: 0.103872
+              moments of inertia:  ~[3.34382e-06,3.34382e-06,3.34382e-06]
+              products of inertia: ~[0,0,0]
+body[1] = pelvis_r. mass: 0.0138605
+              moments of inertia:  ~[1.86116e-06,1.77382e-06,1.86116e-06]
+              products of inertia: ~[0,0,0]
+body[2] = femur_r. mass: 0.00604856
+              moments of inertia:  ~[5.32884e-07,4.04428e-07,6.97156e-07]
+              products of inertia: ~[0,0,0]
+body[3] = tibia_r. mass: 0.00391398
+              moments of inertia:  ~[4.96367e-07,1.39711e-07,4.98772e-07]
+              products of inertia: ~[0,0,0]
+body[4] = foot_r. mass: 0.00150287
+              moments of inertia:  ~[3.15039e-08,4.24762e-09,2.98504e-07]
+              products of inertia: ~[0,0,0]
+body[5] = pelvis_l. mass: 0.0138605
+              moments of inertia:  ~[1.86116e-06,1.77382e-06,1.86116e-06]
+              products of inertia: ~[0,-0,-0]
+body[6] = femur_l. mass: 0.00604856
+              moments of inertia:  ~[5.49935e-07,4.17369e-07,7.19463e-07]
+              products of inertia: ~[0,0,0]
+body[7] = tibia_l. mass: 0.00391398
+              moments of inertia:  ~[4.96367e-07,1.39711e-07,4.98772e-07]
+              products of inertia: ~[0,0,0]
+body[8] = foot_l. mass: 0.00150287
+              moments of inertia:  ~[3.15039e-08,4.24762e-09,2.98504e-08]
+              products of inertia: ~[0,0,0]
+
+JOINTS (total: 9)
+joint[0] = ground_spine. parent: ground_offset, child: spine_offset
+joint[1] = sacroiliac_r. parent: spine_offset, child: pelvis_r_offset
+joint[2] = hip_r. parent: pelvis_r_offset, child: femur_r_offset
+joint[3] = knee_r. parent: femur_r_offset, child: tibia_r_offset
+joint[4] = ankle_r. parent: tibia_r_offset, child: foot_r_offset
+joint[5] = sacroiliac_l. parent: spine_offset, child: pelvis_l_offset
+joint[6] = hip_l. parent: pelvis_l_offset, child: femur_l_offset
+joint[7] = knee_l. parent: femur_l_offset, child: tibia_l_offset
+joint[8] = ankle_l. parent: tibia_l_offset, child: foot_l_offset
+
+ACTUATORS (total: 16)
+actuator[0] = sacrum_pitch_reserve
+actuator[1] = sacrum_roll_reserve
+actuator[2] = sacrum_yaw_reserve
+actuator[3] = sacrum_x_reserve
+actuator[4] = sacrum_y_reserve
+actuator[5] = sacrum_z_reserve
+actuator[6] = hip_r_flx_reserve
+actuator[7] = hip_r_add_reserve
+actuator[8] = hip_r_int_reserve
+actuator[9] = knee_r_flx_reserve
+actuator[10] = ankle_r_flx_reserve
+actuator[11] = hip_l_flx_reserve
+actuator[12] = hip_l_add_reserve
+actuator[13] = hip_l_int_reserve
+actuator[14] = knee_l_flx_reserve
+actuator[15] = ankle_l_flx_reserve
+
+STATES (total: 44)
+y[0] = /jointset/ground_spine/sacrum_pitch/value
+y[1] = /jointset/ground_spine/sacrum_pitch/speed
+y[2] = /jointset/ground_spine/sacrum_roll/value
+y[3] = /jointset/ground_spine/sacrum_roll/speed
+y[4] = /jointset/ground_spine/sacrum_yaw/value
+y[5] = /jointset/ground_spine/sacrum_yaw/speed
+y[6] = /jointset/ground_spine/sacrum_x/value
+y[7] = /jointset/ground_spine/sacrum_x/speed
+y[8] = /jointset/ground_spine/sacrum_y/value
+y[9] = /jointset/ground_spine/sacrum_y/speed
+y[10] = /jointset/ground_spine/sacrum_z/value
+y[11] = /jointset/ground_spine/sacrum_z/speed
+y[12] = /jointset/sacroiliac_r/sacroiliac_r_flx/value
+y[13] = /jointset/sacroiliac_r/sacroiliac_r_flx/speed
+y[14] = /jointset/hip_r/hip_r_flx/value
+y[15] = /jointset/hip_r/hip_r_flx/speed
+y[16] = /jointset/hip_r/hip_r_add/value
+y[17] = /jointset/hip_r/hip_r_add/speed
+y[18] = /jointset/hip_r/hip_r_int/value
+y[19] = /jointset/hip_r/hip_r_int/speed
+y[20] = /jointset/knee_r/knee_r_flx/value
+y[21] = /jointset/knee_r/knee_r_flx/speed
+y[22] = /jointset/ankle_r/ankle_r_flx/value
+y[23] = /jointset/ankle_r/ankle_r_flx/speed
+y[24] = /jointset/ankle_r/ankle_r_add/value
+y[25] = /jointset/ankle_r/ankle_r_add/speed
+y[26] = /jointset/ankle_r/ankle_r_int/value
+y[27] = /jointset/ankle_r/ankle_r_int/speed
+y[28] = /jointset/sacroiliac_l/sacroiliac_l_flx/value
+y[29] = /jointset/sacroiliac_l/sacroiliac_l_flx/speed
+y[30] = /jointset/hip_l/hip_l_flx/value
+y[31] = /jointset/hip_l/hip_l_flx/speed
+y[32] = /jointset/hip_l/hip_l_add/value
+y[33] = /jointset/hip_l/hip_l_add/speed
+y[34] = /jointset/hip_l/hip_l_int/value
+y[35] = /jointset/hip_l/hip_l_int/speed
+y[36] = /jointset/knee_l/knee_l_flx/value
+y[37] = /jointset/knee_l/knee_l_flx/speed
+y[38] = /jointset/ankle_l/ankle_l_flx/value
+y[39] = /jointset/ankle_l/ankle_l_flx/speed
+y[40] = /jointset/ankle_l/ankle_l_add/value
+y[41] = /jointset/ankle_l/ankle_l_add/speed
+y[42] = /jointset/ankle_l/ankle_l_int/value
+y[43] = /jointset/ankle_l/ankle_l_int/speed
+
+[2026-04-03 11:02:34.689] [warning] Coordinate.setValue:  coordinate sacroiliac_r_flx is locked. Unable to change its value.
+[2026-04-03 11:02:34.689] [warning] Coordinate.setValue:  coordinate ankle_r_add is locked. Unable to change its value.
+[2026-04-03 11:02:34.689] [warning] Coordinate.setValue:  coordinate sacroiliac_l_flx is locked. Unable to change its value.
+[2026-04-03 11:02:34.689] [warning] Coordinate.setValue:  coordinate ankle_l_add is locked. Unable to change its value.
+[2026-04-03 11:02:34.701] [info] Requested COM adjustment time range 2.87 to 3.45, clamped to nearest available data times: 2.87 to 3.45.
+[2026-04-03 11:02:34.701] [info] Computing average residuals between 2.87 and 3.45...
+[2026-04-03 11:02:34.712] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:02:34.778] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:02:34.778] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:02:34.784] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:02:34.849] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:02:34.849] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:02:35.554] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:02:35.631] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:02:35.631] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:02:35.634] [info] Computing average residuals between 2.87 and 3.45...
+[2026-04-03 11:02:35.642] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:02:35.724] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:02:35.725] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:02:35.734] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:02:35.830] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:02:35.830] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:02:36.398] [info] Constructing function set for tracking desired kinematics...
+[2026-04-03 11:02:36.560] [warning] No Actuation analysis found in analysis set, adding one...
+[2026-04-03 11:02:36.561] [warning] No Kinematics analysis found in analysis set, adding one...
+[2026-04-03 11:02:36.568] [info] Using the generalized coordinates specified in 'Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_ik.mot' to set the initial configuration.
+[2026-04-03 11:02:36.612] [warning] Coordinate.setValue:  coordinate sacroiliac_r_flx is locked. Unable to change its value.
+[2026-04-03 11:02:36.612] [warning] Coordinate.setValue:  coordinate ankle_r_add is locked. Unable to change its value.
+[2026-04-03 11:02:36.612] [warning] Coordinate.setValue:  coordinate sacroiliac_l_flx is locked. Unable to change its value.
+[2026-04-03 11:02:36.612] [warning] Coordinate.setValue:  coordinate ankle_l_add is locked. Unable to change its value.
+[2026-04-03 11:02:36.612] [info] Using IPOPT optimizer algorithm.
+[2026-04-03 11:02:36.612] [info] Setting optimizer print level to 0.
+[2026-04-03 11:02:36.612] [info] Setting optimizer convergence tolerance to 1.0e-05.
+[2026-04-03 11:02:36.613] [info] Setting optimizer maximum iterations to 2000.
+[2026-04-03 11:02:36.613] [info] Setting cmc controller to not use verbose printing.
+
+[2026-04-03 11:02:36.613] [info] CMC::computeControls, t = 2.87
+[2026-04-03 11:02:37.087] [info] --------------------------------------------
+[2026-04-03 11:02:37.088] [info] Using CMC to track the specified kinematics:
+[2026-04-03 11:02:37.088] [info] --------------------------------------------
+[2026-04-03 11:02:37.088] [info]  -- Integrating from 2.87 to 3.45
+[2026-04-03 11:02:37.088] [info]  -- Start time = Fri Apr  3 11:02:37 2026
+[2026-04-03 11:02:37.088] [info] --------------------------------------------
+[2026-04-03 11:02:37.088] [info] 
+[2026-04-03 11:02:37.089] [info] CMC::computeControls, t = 2.87
+[2026-04-03 11:02:37.109] [info] CMC::computeControls, t = 2.871
+[2026-04-03 11:02:37.109] [warning] Coordinate.setValue:  coordinate ankle_r_int is locked. Unable to change its value.
+[2026-04-03 11:02:37.109] [warning] Coordinate.setValue:  coordinate ankle_l_int is locked. Unable to change its value.
+[2026-04-03 11:02:37.126] [info] CMC::computeControls, t = 2.872
+[2026-04-03 11:02:37.142] [info] CMC::computeControls, t = 2.873
+[2026-04-03 11:02:37.159] [info] CMC::computeControls, t = 2.874
+[2026-04-03 11:02:37.171] [info] CMC::computeControls, t = 2.875
+[2026-04-03 11:02:37.184] [info] CMC::computeControls, t = 2.876
+[2026-04-03 11:02:37.197] [info] CMC::computeControls, t = 2.877
+[2026-04-03 11:02:37.211] [info] CMC::computeControls, t = 2.878
+[2026-04-03 11:02:37.224] [info] CMC::computeControls, t = 2.879
+[2026-04-03 11:02:37.238] [info] CMC::computeControls, t = 2.88
+[2026-04-03 11:02:37.253] [info] CMC::computeControls, t = 2.881
+[2026-04-03 11:02:37.266] [info] CMC::computeControls, t = 2.882
+[2026-04-03 11:02:37.278] [info] CMC::computeControls, t = 2.883
+[2026-04-03 11:02:37.293] [info] CMC::computeControls, t = 2.884
+[2026-04-03 11:02:37.305] [info] CMC::computeControls, t = 2.885
+[2026-04-03 11:02:37.318] [info] CMC::computeControls, t = 2.886
+[2026-04-03 11:02:37.332] [info] CMC::computeControls, t = 2.887
+[2026-04-03 11:02:37.343] [info] CMC::computeControls, t = 2.888
+[2026-04-03 11:02:37.354] [info] CMC::computeControls, t = 2.889
+[2026-04-03 11:02:37.366] [info] CMC::computeControls, t = 2.89
+[2026-04-03 11:02:37.379] [info] CMC::computeControls, t = 2.891
+[2026-04-03 11:02:37.390] [info] CMC::computeControls, t = 2.892
+[2026-04-03 11:02:37.404] [info] CMC::computeControls, t = 2.893
+[2026-04-03 11:02:37.416] [info] CMC::computeControls, t = 2.894
+[2026-04-03 11:02:37.429] [info] CMC::computeControls, t = 2.895
+[2026-04-03 11:02:37.441] [info] CMC::computeControls, t = 2.896
+[2026-04-03 11:02:37.452] [info] CMC::computeControls, t = 2.897
+[2026-04-03 11:02:37.464] [info] CMC::computeControls, t = 2.898
+[2026-04-03 11:02:37.475] [info] CMC::computeControls, t = 2.899
+[2026-04-03 11:02:37.486] [info] CMC::computeControls, t = 2.9
+[2026-04-03 11:02:37.497] [info] CMC::computeControls, t = 2.90100
+[2026-04-03 11:02:37.508] [info] CMC::computeControls, t = 2.90200
+[2026-04-03 11:02:37.519] [info] CMC::computeControls, t = 2.90300
+[2026-04-03 11:02:37.529] [info] CMC::computeControls, t = 2.90400
+[2026-04-03 11:02:37.540] [info] CMC::computeControls, t = 2.90500
+[2026-04-03 11:02:37.550] [info] CMC::computeControls, t = 2.90600
+[2026-04-03 11:02:37.561] [info] CMC::computeControls, t = 2.90700
+[2026-04-03 11:02:37.572] [info] CMC::computeControls, t = 2.90800
+[2026-04-03 11:02:37.583] [info] CMC::computeControls, t = 2.90900
+[2026-04-03 11:02:37.598] [info] CMC::computeControls, t = 2.91
+[2026-04-03 11:02:37.611] [info] CMC::computeControls, t = 2.911
+[2026-04-03 11:02:37.625] [info] CMC::computeControls, t = 2.912
+[2026-04-03 11:02:37.637] [info] CMC::computeControls, t = 2.913
+[2026-04-03 11:02:37.648] [info] CMC::computeControls, t = 2.914
+[2026-04-03 11:02:37.659] [info] CMC::computeControls, t = 2.915
+[2026-04-03 11:02:37.671] [info] CMC::computeControls, t = 2.916
+[2026-04-03 11:02:37.683] [info] CMC::computeControls, t = 2.917
+[2026-04-03 11:02:37.698] [info] CMC::computeControls, t = 2.918
+[2026-04-03 11:02:37.716] [info] CMC::computeControls, t = 2.919
+[2026-04-03 11:02:37.732] [info] CMC::computeControls, t = 2.92
+[2026-04-03 11:02:37.748] [info] CMC::computeControls, t = 2.921
+[2026-04-03 11:02:37.760] [info] CMC::computeControls, t = 2.922
+[2026-04-03 11:02:37.773] [info] CMC::computeControls, t = 2.923
+[2026-04-03 11:02:37.784] [info] CMC::computeControls, t = 2.924
+[2026-04-03 11:02:37.799] [info] CMC::computeControls, t = 2.925
+[2026-04-03 11:02:37.814] [info] CMC::computeControls, t = 2.926
+[2026-04-03 11:02:37.832] [info] CMC::computeControls, t = 2.927
+[2026-04-03 11:02:37.845] [info] CMC::computeControls, t = 2.928
+[2026-04-03 11:02:37.858] [info] CMC::computeControls, t = 2.929
+[2026-04-03 11:02:37.870] [info] CMC::computeControls, t = 2.93
+[2026-04-03 11:02:37.882] [info] CMC::computeControls, t = 2.931
+[2026-04-03 11:02:37.894] [info] CMC::computeControls, t = 2.932
+[2026-04-03 11:02:37.905] [info] CMC::computeControls, t = 2.933
+[2026-04-03 11:02:37.916] [info] CMC::computeControls, t = 2.934
+[2026-04-03 11:02:37.927] [info] CMC::computeControls, t = 2.935
+[2026-04-03 11:02:37.938] [info] CMC::computeControls, t = 2.936
+[2026-04-03 11:02:37.949] [info] CMC::computeControls, t = 2.937
+[2026-04-03 11:02:37.959] [info] CMC::computeControls, t = 2.938
+[2026-04-03 11:02:37.969] [info] CMC::computeControls, t = 2.939
+[2026-04-03 11:02:37.980] [info] CMC::computeControls, t = 2.94
+[2026-04-03 11:02:37.994] [info] CMC::computeControls, t = 2.941
+[2026-04-03 11:02:38.006] [info] CMC::computeControls, t = 2.942
+[2026-04-03 11:02:38.017] [info] CMC::computeControls, t = 2.943
+[2026-04-03 11:02:38.031] [info] CMC::computeControls, t = 2.944
+[2026-04-03 11:02:38.043] [info] CMC::computeControls, t = 2.945
+[2026-04-03 11:02:38.054] [info] CMC::computeControls, t = 2.946
+[2026-04-03 11:02:38.065] [info] CMC::computeControls, t = 2.947
+[2026-04-03 11:02:38.076] [info] CMC::computeControls, t = 2.948
+[2026-04-03 11:02:38.087] [info] CMC::computeControls, t = 2.949
+[2026-04-03 11:02:38.101] [info] CMC::computeControls, t = 2.95
+[2026-04-03 11:02:38.117] [info] CMC::computeControls, t = 2.951
+[2026-04-03 11:02:38.132] [info] CMC::computeControls, t = 2.952
+[2026-04-03 11:02:38.144] [info] CMC::computeControls, t = 2.953
+[2026-04-03 11:02:38.156] [info] CMC::computeControls, t = 2.954
+[2026-04-03 11:02:38.166] [info] CMC::computeControls, t = 2.955
+[2026-04-03 11:02:38.178] [info] CMC::computeControls, t = 2.956
+[2026-04-03 11:02:38.189] [info] CMC::computeControls, t = 2.957
+[2026-04-03 11:02:38.203] [info] CMC::computeControls, t = 2.958
+[2026-04-03 11:02:38.215] [info] CMC::computeControls, t = 2.959
+[2026-04-03 11:02:38.230] [info] CMC::computeControls, t = 2.96
+[2026-04-03 11:02:38.241] [info] CMC::computeControls, t = 2.961
+[2026-04-03 11:02:38.251] [info] CMC::computeControls, t = 2.962
+[2026-04-03 11:02:38.262] [info] CMC::computeControls, t = 2.963
+[2026-04-03 11:02:38.273] [info] CMC::computeControls, t = 2.964
+[2026-04-03 11:02:38.284] [info] CMC::computeControls, t = 2.965
+[2026-04-03 11:02:38.295] [info] CMC::computeControls, t = 2.966
+[2026-04-03 11:02:38.305] [info] CMC::computeControls, t = 2.967
+[2026-04-03 11:02:38.316] [info] CMC::computeControls, t = 2.968
+[2026-04-03 11:02:38.327] [info] CMC::computeControls, t = 2.969
+[2026-04-03 11:02:38.337] [info] CMC::computeControls, t = 2.97
+[2026-04-03 11:02:38.349] [info] CMC::computeControls, t = 2.971
+[2026-04-03 11:02:38.360] [info] CMC::computeControls, t = 2.972
+[2026-04-03 11:02:38.371] [info] CMC::computeControls, t = 2.973
+[2026-04-03 11:02:38.382] [info] CMC::computeControls, t = 2.974
+[2026-04-03 11:02:38.397] [info] CMC::computeControls, t = 2.975
+[2026-04-03 11:02:38.410] [info] CMC::computeControls, t = 2.976
+[2026-04-03 11:02:38.420] [info] CMC::computeControls, t = 2.977
+[2026-04-03 11:02:38.431] [info] CMC::computeControls, t = 2.978
+[2026-04-03 11:02:38.445] [info] CMC::computeControls, t = 2.979
+[2026-04-03 11:02:38.457] [info] CMC::computeControls, t = 2.98
+[2026-04-03 11:02:38.467] [info] CMC::computeControls, t = 2.981
+[2026-04-03 11:02:38.478] [info] CMC::computeControls, t = 2.982
+[2026-04-03 11:02:38.489] [info] CMC::computeControls, t = 2.983
+[2026-04-03 11:02:38.502] [info] CMC::computeControls, t = 2.984
+[2026-04-03 11:02:38.515] [info] CMC::computeControls, t = 2.985
+[2026-04-03 11:02:38.529] [info] CMC::computeControls, t = 2.986
+[2026-04-03 11:02:38.544] [info] CMC::computeControls, t = 2.987
+[2026-04-03 11:02:38.556] [info] CMC::computeControls, t = 2.988
+[2026-04-03 11:02:38.568] [info] CMC::computeControls, t = 2.989
+[2026-04-03 11:02:38.580] [info] CMC::computeControls, t = 2.99
+[2026-04-03 11:02:38.591] [info] CMC::computeControls, t = 2.991
+[2026-04-03 11:02:38.602] [info] CMC::computeControls, t = 2.992
+[2026-04-03 11:02:38.613] [info] CMC::computeControls, t = 2.993
+[2026-04-03 11:02:38.624] [info] CMC::computeControls, t = 2.994
+[2026-04-03 11:02:38.634] [info] CMC::computeControls, t = 2.995
+[2026-04-03 11:02:38.645] [info] CMC::computeControls, t = 2.996
+[2026-04-03 11:02:38.655] [info] CMC::computeControls, t = 2.997
+[2026-04-03 11:02:38.666] [info] CMC::computeControls, t = 2.998
+[2026-04-03 11:02:38.677] [info] CMC::computeControls, t = 2.999
+[2026-04-03 11:02:38.688] [info] CMC::computeControls, t = 3.0
+[2026-04-03 11:02:38.702] [info] CMC::computeControls, t = 3.00100
+[2026-04-03 11:02:38.714] [info] CMC::computeControls, t = 3.00200
+[2026-04-03 11:02:38.728] [info] CMC::computeControls, t = 3.00300
+[2026-04-03 11:02:38.739] [info] CMC::computeControls, t = 3.00400
+[2026-04-03 11:02:38.749] [info] CMC::computeControls, t = 3.00500
+[2026-04-03 11:02:38.760] [info] CMC::computeControls, t = 3.00600
+[2026-04-03 11:02:38.771] [info] CMC::computeControls, t = 3.00700
+[2026-04-03 11:02:38.781] [info] CMC::computeControls, t = 3.00800
+[2026-04-03 11:02:38.793] [info] CMC::computeControls, t = 3.00900
+[2026-04-03 11:02:38.803] [info] CMC::computeControls, t = 3.01
+[2026-04-03 11:02:38.814] [info] CMC::computeControls, t = 3.011
+[2026-04-03 11:02:38.825] [info] CMC::computeControls, t = 3.012
+[2026-04-03 11:02:38.835] [info] CMC::computeControls, t = 3.013
+[2026-04-03 11:02:38.846] [info] CMC::computeControls, t = 3.014
+[2026-04-03 11:02:38.858] [info] CMC::computeControls, t = 3.015
+[2026-04-03 11:02:38.869] [info] CMC::computeControls, t = 3.016
+[2026-04-03 11:02:38.879] [info] CMC::computeControls, t = 3.017
+[2026-04-03 11:02:38.894] [info] CMC::computeControls, t = 3.018
+[2026-04-03 11:02:38.908] [info] CMC::computeControls, t = 3.019
+[2026-04-03 11:02:38.928] [info] CMC::computeControls, t = 3.02
+[2026-04-03 11:02:38.940] [info] CMC::computeControls, t = 3.021
+[2026-04-03 11:02:38.950] [info] CMC::computeControls, t = 3.022
+[2026-04-03 11:02:38.962] [info] CMC::computeControls, t = 3.023
+[2026-04-03 11:02:38.973] [info] CMC::computeControls, t = 3.024
+[2026-04-03 11:02:38.984] [info] CMC::computeControls, t = 3.025
+[2026-04-03 11:02:38.997] [info] CMC::computeControls, t = 3.026
+[2026-04-03 11:02:39.010] [info] CMC::computeControls, t = 3.027
+[2026-04-03 11:02:39.024] [info] CMC::computeControls, t = 3.028
+[2026-04-03 11:02:39.035] [info] CMC::computeControls, t = 3.029
+[2026-04-03 11:02:39.045] [info] CMC::computeControls, t = 3.03
+[2026-04-03 11:02:39.056] [info] CMC::computeControls, t = 3.031
+[2026-04-03 11:02:39.067] [info] CMC::computeControls, t = 3.032
+[2026-04-03 11:02:39.078] [info] CMC::computeControls, t = 3.033
+[2026-04-03 11:02:39.089] [info] CMC::computeControls, t = 3.034
+[2026-04-03 11:02:39.102] [info] CMC::computeControls, t = 3.035
+[2026-04-03 11:02:39.115] [info] CMC::computeControls, t = 3.036
+[2026-04-03 11:02:39.129] [info] CMC::computeControls, t = 3.037
+[2026-04-03 11:02:39.141] [info] CMC::computeControls, t = 3.038
+[2026-04-03 11:02:39.151] [info] CMC::computeControls, t = 3.039
+[2026-04-03 11:02:39.163] [info] CMC::computeControls, t = 3.04
+[2026-04-03 11:02:39.175] [info] CMC::computeControls, t = 3.041
+[2026-04-03 11:02:39.186] [info] CMC::computeControls, t = 3.042
+[2026-04-03 11:02:39.197] [info] CMC::computeControls, t = 3.043
+[2026-04-03 11:02:39.209] [info] CMC::computeControls, t = 3.044
+[2026-04-03 11:02:39.219] [info] CMC::computeControls, t = 3.045
+[2026-04-03 11:02:39.230] [info] CMC::computeControls, t = 3.046
+[2026-04-03 11:02:39.241] [info] CMC::computeControls, t = 3.047
+[2026-04-03 11:02:39.252] [info] CMC::computeControls, t = 3.048
+[2026-04-03 11:02:39.265] [info] CMC::computeControls, t = 3.049
+[2026-04-03 11:02:39.278] [info] CMC::computeControls, t = 3.05
+[2026-04-03 11:02:39.294] [info] CMC::computeControls, t = 3.051
+[2026-04-03 11:02:39.310] [info] CMC::computeControls, t = 3.052
+[2026-04-03 11:02:39.329] [info] CMC::computeControls, t = 3.053
+[2026-04-03 11:02:39.349] [info] CMC::computeControls, t = 3.054
+[2026-04-03 11:02:39.369] [info] CMC::computeControls, t = 3.055
+[2026-04-03 11:02:39.387] [info] CMC::computeControls, t = 3.056
+[2026-04-03 11:02:39.405] [info] CMC::computeControls, t = 3.057
+[2026-04-03 11:02:39.419] [info] CMC::computeControls, t = 3.058
+[2026-04-03 11:02:39.436] [info] CMC::computeControls, t = 3.059
+[2026-04-03 11:02:39.448] [info] CMC::computeControls, t = 3.06
+[2026-04-03 11:02:39.460] [info] CMC::computeControls, t = 3.061
+[2026-04-03 11:02:39.472] [info] CMC::computeControls, t = 3.062
+[2026-04-03 11:02:39.483] [info] CMC::computeControls, t = 3.063
+[2026-04-03 11:02:39.495] [info] CMC::computeControls, t = 3.064
+[2026-04-03 11:02:39.504] [info] CMC::computeControls, t = 3.065
+[2026-04-03 11:02:39.516] [info] CMC::computeControls, t = 3.066
+[2026-04-03 11:02:39.527] [info] CMC::computeControls, t = 3.067
+[2026-04-03 11:02:39.538] [info] CMC::computeControls, t = 3.068
+[2026-04-03 11:02:39.550] [info] CMC::computeControls, t = 3.069
+[2026-04-03 11:02:39.561] [info] CMC::computeControls, t = 3.07
+[2026-04-03 11:02:39.571] [info] CMC::computeControls, t = 3.071
+[2026-04-03 11:02:39.582] [info] CMC::computeControls, t = 3.072
+[2026-04-03 11:02:39.596] [info] CMC::computeControls, t = 3.073
+[2026-04-03 11:02:39.608] [info] CMC::computeControls, t = 3.074
+[2026-04-03 11:02:39.619] [info] CMC::computeControls, t = 3.075
+[2026-04-03 11:02:39.632] [info] CMC::computeControls, t = 3.076
+[2026-04-03 11:02:39.643] [info] CMC::computeControls, t = 3.077
+[2026-04-03 11:02:39.675] [info] CMC::computeControls, t = 3.078
+[2026-04-03 11:02:39.698] [info] CMC::computeControls, t = 3.079
+[2026-04-03 11:02:39.714] [info] CMC::computeControls, t = 3.08
+[2026-04-03 11:02:39.729] [info] CMC::computeControls, t = 3.081
+[2026-04-03 11:02:39.745] [info] CMC::computeControls, t = 3.082
+[2026-04-03 11:02:39.758] [info] CMC::computeControls, t = 3.083
+[2026-04-03 11:02:39.771] [info] CMC::computeControls, t = 3.084
+[2026-04-03 11:02:39.784] [info] CMC::computeControls, t = 3.085
+[2026-04-03 11:02:39.800] [info] CMC::computeControls, t = 3.086
+[2026-04-03 11:02:39.818] [info] CMC::computeControls, t = 3.087
+[2026-04-03 11:02:39.834] [info] CMC::computeControls, t = 3.088
+[2026-04-03 11:02:39.849] [info] CMC::computeControls, t = 3.089
+[2026-04-03 11:02:39.863] [info] CMC::computeControls, t = 3.09
+[2026-04-03 11:02:39.876] [info] CMC::computeControls, t = 3.091
+[2026-04-03 11:02:39.888] [info] CMC::computeControls, t = 3.092
+[2026-04-03 11:02:39.904] [info] CMC::computeControls, t = 3.093
+[2026-04-03 11:02:39.918] [info] CMC::computeControls, t = 3.094
+[2026-04-03 11:02:39.935] [info] CMC::computeControls, t = 3.095
+[2026-04-03 11:02:39.948] [info] CMC::computeControls, t = 3.096
+[2026-04-03 11:02:39.963] [info] CMC::computeControls, t = 3.097
+[2026-04-03 11:02:39.978] [info] CMC::computeControls, t = 3.098
+[2026-04-03 11:02:39.991] [info] CMC::computeControls, t = 3.099
+[2026-04-03 11:02:40.004] [info] CMC::computeControls, t = 3.1
+[2026-04-03 11:02:40.018] [info] CMC::computeControls, t = 3.10100
+[2026-04-03 11:02:40.032] [info] CMC::computeControls, t = 3.10200
+[2026-04-03 11:02:40.044] [info] CMC::computeControls, t = 3.10300
+[2026-04-03 11:02:40.058] [info] CMC::computeControls, t = 3.10400
+[2026-04-03 11:02:40.070] [info] CMC::computeControls, t = 3.10500
+[2026-04-03 11:02:40.083] [info] CMC::computeControls, t = 3.10600
+[2026-04-03 11:02:40.099] [info] CMC::computeControls, t = 3.10700
+[2026-04-03 11:02:40.113] [info] CMC::computeControls, t = 3.10800
+[2026-04-03 11:02:40.130] [info] CMC::computeControls, t = 3.10900
+[2026-04-03 11:02:40.144] [info] CMC::computeControls, t = 3.11
+[2026-04-03 11:02:40.157] [info] CMC::computeControls, t = 3.111
+[2026-04-03 11:02:40.169] [info] CMC::computeControls, t = 3.112
+[2026-04-03 11:02:40.181] [info] CMC::computeControls, t = 3.113
+[2026-04-03 11:02:40.193] [info] CMC::computeControls, t = 3.114
+[2026-04-03 11:02:40.206] [info] CMC::computeControls, t = 3.115
+[2026-04-03 11:02:40.218] [info] CMC::computeControls, t = 3.116
+[2026-04-03 11:02:40.231] [info] CMC::computeControls, t = 3.117
+[2026-04-03 11:02:40.244] [info] CMC::computeControls, t = 3.118
+[2026-04-03 11:02:40.257] [info] CMC::computeControls, t = 3.119
+[2026-04-03 11:02:40.269] [info] CMC::computeControls, t = 3.12
+[2026-04-03 11:02:40.282] [info] CMC::computeControls, t = 3.121
+[2026-04-03 11:02:40.297] [info] CMC::computeControls, t = 3.122
+[2026-04-03 11:02:40.312] [info] CMC::computeControls, t = 3.123
+[2026-04-03 11:02:40.326] [info] CMC::computeControls, t = 3.124
+[2026-04-03 11:02:40.339] [info] CMC::computeControls, t = 3.125
+[2026-04-03 11:02:40.351] [info] CMC::computeControls, t = 3.126
+[2026-04-03 11:02:40.362] [info] CMC::computeControls, t = 3.127
+[2026-04-03 11:02:40.373] [info] CMC::computeControls, t = 3.128
+[2026-04-03 11:02:40.385] [info] CMC::computeControls, t = 3.129
+[2026-04-03 11:02:40.401] [info] CMC::computeControls, t = 3.13
+[2026-04-03 11:02:40.413] [info] CMC::computeControls, t = 3.131
+[2026-04-03 11:02:40.426] [info] CMC::computeControls, t = 3.132
+[2026-04-03 11:02:40.438] [info] CMC::computeControls, t = 3.133
+[2026-04-03 11:02:40.450] [info] CMC::computeControls, t = 3.134
+[2026-04-03 11:02:40.462] [info] CMC::computeControls, t = 3.135
+[2026-04-03 11:02:40.474] [info] CMC::computeControls, t = 3.136
+[2026-04-03 11:02:40.485] [info] CMC::computeControls, t = 3.137
+[2026-04-03 11:02:40.499] [info] CMC::computeControls, t = 3.138
+[2026-04-03 11:02:40.510] [info] CMC::computeControls, t = 3.139
+[2026-04-03 11:02:40.521] [info] CMC::computeControls, t = 3.14
+[2026-04-03 11:02:40.534] [info] CMC::computeControls, t = 3.141
+[2026-04-03 11:02:40.546] [info] CMC::computeControls, t = 3.142
+[2026-04-03 11:02:40.560] [info] CMC::computeControls, t = 3.143
+[2026-04-03 11:02:40.571] [info] CMC::computeControls, t = 3.144
+[2026-04-03 11:02:40.585] [info] CMC::computeControls, t = 3.145
+[2026-04-03 11:02:40.600] [info] CMC::computeControls, t = 3.146
+[2026-04-03 11:02:40.614] [info] CMC::computeControls, t = 3.147
+[2026-04-03 11:02:40.628] [info] CMC::computeControls, t = 3.148
+[2026-04-03 11:02:40.641] [info] CMC::computeControls, t = 3.149
+[2026-04-03 11:02:40.653] [info] CMC::computeControls, t = 3.15
+[2026-04-03 11:02:40.664] [info] CMC::computeControls, t = 3.151
+[2026-04-03 11:02:40.677] [info] CMC::computeControls, t = 3.152
+[2026-04-03 11:02:40.690] [info] CMC::computeControls, t = 3.153
+[2026-04-03 11:02:40.705] [info] CMC::computeControls, t = 3.154
+[2026-04-03 11:02:40.717] [info] CMC::computeControls, t = 3.155
+[2026-04-03 11:02:40.731] [info] CMC::computeControls, t = 3.156
+[2026-04-03 11:02:40.789] [info] CMC::computeControls, t = 3.157
+[2026-04-03 11:02:40.926] [error] SimTK Exception thrown at InteriorPointOptimizer.cpp:265:
+  Optimizer failed: Ipopt: Search direction becomes too small (status 3)
+[2026-04-03 11:02:40.926] [error] OPTIMIZATION FAILED...
+[2026-04-03 11:02:40.926] [error] CMC::computeControls: Optimizer could not find a solution.
+Unable to find a feasible solution at time = 3.157.
+Model cannot generate the forces necessary to achieve the target acceleration.
+Possible issues: 1. not all model degrees-of-freedom are actuated, 
+2. there are tracking tasks for locked coordinates, and/or
+3. there are unnecessary control constraints on reserve/residual actuators.
+
+
+[2026-04-03 11:03:03.842] [info] Adding force object set from Z:/home/hudson/Downloads/CMC_Runs/BAA01/Baseline/../../../../rat-hindlimb-model/models/osim/xml/rat_hindlimb_bilateral_rra_actuators.xml
+[2026-04-03 11:03:03.850] [info] Running tool scaled_scaled.
+[2026-04-03 11:03:03.859] [info] 	taskSet size = 16.
+[2026-04-03 11:03:03.864] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:03:03.925] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:03:03.925] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:03:03.928] [warning] A desired points file was not specified.
+[2026-04-03 11:03:03.928] [info] Loading desired kinematics from file 'Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_ik.mot'...
+[2026-04-03 11:03:03.928] [info] Storage: read data file = Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_ik.mot (nr=117 nc=23)
+[2026-04-03 11:03:03.930] [info] Low-pass filtering desired kinematics with a cutoff frequency of 15.0...
+[2026-04-03 11:03:03.944] [cout] [info] MODEL: scaled_scaled
+
+numStates = 44
+numCoordinates = 22
+numSpeeds = 22
+numActuators = 16
+numBodies = 9
+numConstraints = 0
+numProbes = 0
+
+ANALYSES (total: 2)
+analysis[0] = Un-named analysis.
+analysis[1] = Un-named analysis.
+
+BODIES (total: 9)
+body[0] = spine. mass: 0.103872
+              moments of inertia:  ~[3.34382e-06,3.34382e-06,3.34382e-06]
+              products of inertia: ~[0,0,0]
+body[1] = pelvis_r. mass: 0.0138605
+              moments of inertia:  ~[1.86116e-06,1.77382e-06,1.86116e-06]
+              products of inertia: ~[0,0,0]
+body[2] = femur_r. mass: 0.00604856
+              moments of inertia:  ~[5.32884e-07,4.04428e-07,6.97156e-07]
+              products of inertia: ~[0,0,0]
+body[3] = tibia_r. mass: 0.00391398
+              moments of inertia:  ~[4.96367e-07,1.39711e-07,4.98772e-07]
+              products of inertia: ~[0,0,0]
+body[4] = foot_r. mass: 0.00150287
+              moments of inertia:  ~[3.15039e-08,4.24762e-09,2.98504e-07]
+              products of inertia: ~[0,0,0]
+body[5] = pelvis_l. mass: 0.0138605
+              moments of inertia:  ~[1.86116e-06,1.77382e-06,1.86116e-06]
+              products of inertia: ~[0,-0,-0]
+body[6] = femur_l. mass: 0.00604856
+              moments of inertia:  ~[5.49935e-07,4.17369e-07,7.19463e-07]
+              products of inertia: ~[0,0,0]
+body[7] = tibia_l. mass: 0.00391398
+              moments of inertia:  ~[4.96367e-07,1.39711e-07,4.98772e-07]
+              products of inertia: ~[0,0,0]
+body[8] = foot_l. mass: 0.00150287
+              moments of inertia:  ~[3.15039e-08,4.24762e-09,2.98504e-08]
+              products of inertia: ~[0,0,0]
+
+JOINTS (total: 9)
+joint[0] = ground_spine. parent: ground_offset, child: spine_offset
+joint[1] = sacroiliac_r. parent: spine_offset, child: pelvis_r_offset
+joint[2] = hip_r. parent: pelvis_r_offset, child: femur_r_offset
+joint[3] = knee_r. parent: femur_r_offset, child: tibia_r_offset
+joint[4] = ankle_r. parent: tibia_r_offset, child: foot_r_offset
+joint[5] = sacroiliac_l. parent: spine_offset, child: pelvis_l_offset
+joint[6] = hip_l. parent: pelvis_l_offset, child: femur_l_offset
+joint[7] = knee_l. parent: femur_l_offset, child: tibia_l_offset
+joint[8] = ankle_l. parent: tibia_l_offset, child: foot_l_offset
+
+ACTUATORS (total: 16)
+actuator[0] = sacrum_pitch_reserve
+actuator[1] = sacrum_roll_reserve
+actuator[2] = sacrum_yaw_reserve
+actuator[3] = sacrum_x_reserve
+actuator[4] = sacrum_y_reserve
+actuator[5] = sacrum_z_reserve
+actuator[6] = hip_r_flx_reserve
+actuator[7] = hip_r_add_reserve
+actuator[8] = hip_r_int_reserve
+actuator[9] = knee_r_flx_reserve
+actuator[10] = ankle_r_flx_reserve
+actuator[11] = hip_l_flx_reserve
+actuator[12] = hip_l_add_reserve
+actuator[13] = hip_l_int_reserve
+actuator[14] = knee_l_flx_reserve
+actuator[15] = ankle_l_flx_reserve
+
+STATES (total: 44)
+y[0] = /jointset/ground_spine/sacrum_pitch/value
+y[1] = /jointset/ground_spine/sacrum_pitch/speed
+y[2] = /jointset/ground_spine/sacrum_roll/value
+y[3] = /jointset/ground_spine/sacrum_roll/speed
+y[4] = /jointset/ground_spine/sacrum_yaw/value
+y[5] = /jointset/ground_spine/sacrum_yaw/speed
+y[6] = /jointset/ground_spine/sacrum_x/value
+y[7] = /jointset/ground_spine/sacrum_x/speed
+y[8] = /jointset/ground_spine/sacrum_y/value
+y[9] = /jointset/ground_spine/sacrum_y/speed
+y[10] = /jointset/ground_spine/sacrum_z/value
+y[11] = /jointset/ground_spine/sacrum_z/speed
+y[12] = /jointset/sacroiliac_r/sacroiliac_r_flx/value
+y[13] = /jointset/sacroiliac_r/sacroiliac_r_flx/speed
+y[14] = /jointset/hip_r/hip_r_flx/value
+y[15] = /jointset/hip_r/hip_r_flx/speed
+y[16] = /jointset/hip_r/hip_r_add/value
+y[17] = /jointset/hip_r/hip_r_add/speed
+y[18] = /jointset/hip_r/hip_r_int/value
+y[19] = /jointset/hip_r/hip_r_int/speed
+y[20] = /jointset/knee_r/knee_r_flx/value
+y[21] = /jointset/knee_r/knee_r_flx/speed
+y[22] = /jointset/ankle_r/ankle_r_flx/value
+y[23] = /jointset/ankle_r/ankle_r_flx/speed
+y[24] = /jointset/ankle_r/ankle_r_add/value
+y[25] = /jointset/ankle_r/ankle_r_add/speed
+y[26] = /jointset/ankle_r/ankle_r_int/value
+y[27] = /jointset/ankle_r/ankle_r_int/speed
+y[28] = /jointset/sacroiliac_l/sacroiliac_l_flx/value
+y[29] = /jointset/sacroiliac_l/sacroiliac_l_flx/speed
+y[30] = /jointset/hip_l/hip_l_flx/value
+y[31] = /jointset/hip_l/hip_l_flx/speed
+y[32] = /jointset/hip_l/hip_l_add/value
+y[33] = /jointset/hip_l/hip_l_add/speed
+y[34] = /jointset/hip_l/hip_l_int/value
+y[35] = /jointset/hip_l/hip_l_int/speed
+y[36] = /jointset/knee_l/knee_l_flx/value
+y[37] = /jointset/knee_l/knee_l_flx/speed
+y[38] = /jointset/ankle_l/ankle_l_flx/value
+y[39] = /jointset/ankle_l/ankle_l_flx/speed
+y[40] = /jointset/ankle_l/ankle_l_add/value
+y[41] = /jointset/ankle_l/ankle_l_add/speed
+y[42] = /jointset/ankle_l/ankle_l_int/value
+y[43] = /jointset/ankle_l/ankle_l_int/speed
+
+[2026-04-03 11:03:04.001] [warning] Coordinate.setValue:  coordinate sacroiliac_r_flx is locked. Unable to change its value.
+[2026-04-03 11:03:04.001] [warning] Coordinate.setValue:  coordinate ankle_r_add is locked. Unable to change its value.
+[2026-04-03 11:03:04.001] [warning] Coordinate.setValue:  coordinate sacroiliac_l_flx is locked. Unable to change its value.
+[2026-04-03 11:03:04.001] [warning] Coordinate.setValue:  coordinate ankle_l_add is locked. Unable to change its value.
+[2026-04-03 11:03:04.013] [info] Requested COM adjustment time range 2.87 to 3.45, clamped to nearest available data times: 2.87 to 3.45.
+[2026-04-03 11:03:04.013] [info] Computing average residuals between 2.87 and 3.45...
+[2026-04-03 11:03:04.022] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:03:04.091] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:03:04.091] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:03:04.097] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:03:04.167] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:03:04.167] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:03:04.798] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:03:04.865] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:03:04.865] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:03:04.869] [info] Computing average residuals between 2.87 and 3.45...
+[2026-04-03 11:03:04.876] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:03:04.939] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:03:04.939] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:03:04.944] [info] Storage: read data file = BAA01_Baseline_Walk05_FP.mot (nr=4725 nc=37)
+[2026-04-03 11:03:05.004] [info] ExternalForce::FT26943 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:03:05.004] [info] ExternalForce::FT26944 Data source being set to BAA01_Baseline_Walk05
+[2026-04-03 11:03:05.616] [info] Constructing function set for tracking desired kinematics...
+[2026-04-03 11:03:05.735] [warning] No Actuation analysis found in analysis set, adding one...
+[2026-04-03 11:03:05.736] [warning] No Kinematics analysis found in analysis set, adding one...
+[2026-04-03 11:03:05.737] [info] Using the generalized coordinates specified in 'Z:\home\hudson\Downloads\CMC_Runs\BAA01\Baseline\BAA01_Baseline_Walk05_ik.mot' to set the initial configuration.
+[2026-04-03 11:03:05.768] [warning] Coordinate.setValue:  coordinate sacroiliac_r_flx is locked. Unable to change its value.
+[2026-04-03 11:03:05.768] [warning] Coordinate.setValue:  coordinate ankle_r_add is locked. Unable to change its value.
+[2026-04-03 11:03:05.768] [warning] Coordinate.setValue:  coordinate sacroiliac_l_flx is locked. Unable to change its value.
+[2026-04-03 11:03:05.768] [warning] Coordinate.setValue:  coordinate ankle_l_add is locked. Unable to change its value.
+[2026-04-03 11:03:05.769] [info] Using IPOPT optimizer algorithm.
+[2026-04-03 11:03:05.769] [info] Setting optimizer print level to 0.
+[2026-04-03 11:03:05.769] [info] Setting optimizer convergence tolerance to 1.0e-05.
+[2026-04-03 11:03:05.769] [info] Setting optimizer maximum iterations to 2000.
+[2026-04-03 11:03:05.769] [info] Setting cmc controller to not use verbose printing.
+
+[2026-04-03 11:03:05.769] [info] CMC::computeControls, t = 2.87
+[2026-04-03 11:03:06.312] [info] --------------------------------------------
+[2026-04-03 11:03:06.312] [info] Using CMC to track the specified kinematics:
+[2026-04-03 11:03:06.312] [info] --------------------------------------------
+[2026-04-03 11:03:06.312] [info]  -- Integrating from 2.87 to 3.45
+[2026-04-03 11:03:06.313] [info]  -- Start time = Fri Apr  3 11:03:06 2026
+[2026-04-03 11:03:06.313] [info] --------------------------------------------
+[2026-04-03 11:03:06.313] [info] 
+[2026-04-03 11:03:06.315] [info] CMC::computeControls, t = 2.87
+[2026-04-03 11:03:06.344] [info] CMC::computeControls, t = 2.871
+[2026-04-03 11:03:06.344] [warning] Coordinate.setValue:  coordinate ankle_r_int is locked. Unable to change its value.
+[2026-04-03 11:03:06.344] [warning] Coordinate.setValue:  coordinate ankle_l_int is locked. Unable to change its value.
+[2026-04-03 11:03:06.363] [info] CMC::computeControls, t = 2.872
+[2026-04-03 11:03:06.385] [info] CMC::computeControls, t = 2.873
+[2026-04-03 11:03:06.403] [info] CMC::computeControls, t = 2.874
+[2026-04-03 11:03:06.419] [info] CMC::computeControls, t = 2.875
+[2026-04-03 11:03:06.436] [info] CMC::computeControls, t = 2.876
+[2026-04-03 11:03:06.453] [info] CMC::computeControls, t = 2.877
+[2026-04-03 11:03:06.470] [info] CMC::computeControls, t = 2.878
+[2026-04-03 11:03:06.490] [info] CMC::computeControls, t = 2.879
+[2026-04-03 11:03:06.508] [info] CMC::computeControls, t = 2.88
+[2026-04-03 11:03:06.525] [info] CMC::computeControls, t = 2.881
+[2026-04-03 11:03:06.541] [info] CMC::computeControls, t = 2.882
+[2026-04-03 11:03:06.561] [info] CMC::computeControls, t = 2.883
+[2026-04-03 11:03:06.578] [info] CMC::computeControls, t = 2.884
+[2026-04-03 11:03:06.596] [info] CMC::computeControls, t = 2.885
+[2026-04-03 11:03:06.609] [info] CMC::computeControls, t = 2.886
+[2026-04-03 11:03:06.621] [info] CMC::computeControls, t = 2.887
+[2026-04-03 11:03:06.632] [info] CMC::computeControls, t = 2.888
+[2026-04-03 11:03:06.643] [info] CMC::computeControls, t = 2.889
+[2026-04-03 11:03:06.654] [info] CMC::computeControls, t = 2.89
+[2026-04-03 11:03:06.666] [info] CMC::computeControls, t = 2.891
+[2026-04-03 11:03:06.677] [info] CMC::computeControls, t = 2.892
+[2026-04-03 11:03:06.688] [info] CMC::computeControls, t = 2.893
+[2026-04-03 11:03:06.698] [info] CMC::computeControls, t = 2.894
+[2026-04-03 11:03:06.710] [info] CMC::computeControls, t = 2.895
+[2026-04-03 11:03:06.723] [info] CMC::computeControls, t = 2.896
+[2026-04-03 11:03:06.735] [info] CMC::computeControls, t = 2.897
+[2026-04-03 11:03:06.746] [info] CMC::computeControls, t = 2.898
+[2026-04-03 11:03:06.758] [info] CMC::computeControls, t = 2.899
+[2026-04-03 11:03:06.770] [info] CMC::computeControls, t = 2.9
+[2026-04-03 11:03:06.783] [info] CMC::computeControls, t = 2.90100
+[2026-04-03 11:03:06.801] [info] CMC::computeControls, t = 2.90200
+[2026-04-03 11:03:06.818] [info] CMC::computeControls, t = 2.90300
+[2026-04-03 11:03:06.835] [info] CMC::computeControls, t = 2.90400
+[2026-04-03 11:03:06.851] [info] CMC::computeControls, t = 2.90500
+[2026-04-03 11:03:06.867] [info] CMC::computeControls, t = 2.90600
+[2026-04-03 11:03:06.881] [info] CMC::computeControls, t = 2.90700
+[2026-04-03 11:03:06.894] [info] CMC::computeControls, t = 2.90800
+[2026-04-03 11:03:06.907] [info] CMC::computeControls, t = 2.90900
+[2026-04-03 11:03:06.926] [info] CMC::computeControls, t = 2.91
+[2026-04-03 11:03:06.942] [info] CMC::computeControls, t = 2.911
+[2026-04-03 11:03:06.955] [info] CMC::computeControls, t = 2.912
+[2026-04-03 11:03:06.966] [info] CMC::computeControls, t = 2.913
+[2026-04-03 11:03:06.978] [info] CMC::computeControls, t = 2.914
+[2026-04-03 11:03:06.989] [info] CMC::computeControls, t = 2.915
+[2026-04-03 11:03:07.000] [info] CMC::computeControls, t = 2.916
+[2026-04-03 11:03:07.012] [info] CMC::computeControls, t = 2.917
+[2026-04-03 11:03:07.025] [info] CMC::computeControls, t = 2.918
+[2026-04-03 11:03:07.037] [info] CMC::computeControls, t = 2.919
+[2026-04-03 11:03:07.051] [info] CMC::computeControls, t = 2.92
+[2026-04-03 11:03:07.068] [info] CMC::computeControls, t = 2.921
+[2026-04-03 11:03:07.081] [info] CMC::computeControls, t = 2.922
+[2026-04-03 11:03:07.092] [info] CMC::computeControls, t = 2.923
+[2026-04-03 11:03:07.103] [info] CMC::computeControls, t = 2.924
+[2026-04-03 11:03:07.115] [info] CMC::computeControls, t = 2.925
+[2026-04-03 11:03:07.129] [info] CMC::computeControls, t = 2.926
+[2026-04-03 11:03:07.144] [info] CMC::computeControls, t = 2.927
+[2026-04-03 11:03:07.157] [info] CMC::computeControls, t = 2.928
+[2026-04-03 11:03:07.175] [info] CMC::computeControls, t = 2.929
+[2026-04-03 11:03:07.187] [info] CMC::computeControls, t = 2.93
+[2026-04-03 11:03:07.198] [info] CMC::computeControls, t = 2.931
+[2026-04-03 11:03:07.211] [info] CMC::computeControls, t = 2.932
+[2026-04-03 11:03:07.222] [info] CMC::computeControls, t = 2.933
+[2026-04-03 11:03:07.234] [info] CMC::computeControls, t = 2.934
+[2026-04-03 11:03:07.246] [info] CMC::computeControls, t = 2.935
+[2026-04-03 11:03:07.257] [info] CMC::computeControls, t = 2.936
+[2026-04-03 11:03:07.268] [info] CMC::computeControls, t = 2.937
+[2026-04-03 11:03:07.279] [info] CMC::computeControls, t = 2.938
+[2026-04-03 11:03:07.290] [info] CMC::computeControls, t = 2.939
+[2026-04-03 11:03:07.301] [info] CMC::computeControls, t = 2.94
+[2026-04-03 11:03:07.312] [info] CMC::computeControls, t = 2.941
+[2026-04-03 11:03:07.325] [info] CMC::computeControls, t = 2.942
+[2026-04-03 11:03:07.336] [info] CMC::computeControls, t = 2.943
+[2026-04-03 11:03:07.347] [info] CMC::computeControls, t = 2.944
+[2026-04-03 11:03:07.359] [info] CMC::computeControls, t = 2.945
+[2026-04-03 11:03:07.370] [info] CMC::computeControls, t = 2.946
+[2026-04-03 11:03:07.381] [info] CMC::computeControls, t = 2.947
+[2026-04-03 11:03:07.392] [info] CMC::computeControls, t = 2.948
+[2026-04-03 11:03:07.402] [info] CMC::computeControls, t = 2.949
+[2026-04-03 11:03:07.413] [info] CMC::computeControls, t = 2.95
+[2026-04-03 11:03:07.427] [info] CMC::computeControls, t = 2.951
+[2026-04-03 11:03:07.437] [info] CMC::computeControls, t = 2.952
+[2026-04-03 11:03:07.449] [info] CMC::computeControls, t = 2.953
+[2026-04-03 11:03:07.462] [info] CMC::computeControls, t = 2.954
+[2026-04-03 11:03:07.473] [info] CMC::computeControls, t = 2.955
+[2026-04-03 11:03:07.483] [info] CMC::computeControls, t = 2.956
+[2026-04-03 11:03:07.494] [info] CMC::computeControls, t = 2.957
+[2026-04-03 11:03:07.504] [info] CMC::computeControls, t = 2.958
+[2026-04-03 11:03:07.516] [info] CMC::computeControls, t = 2.959
+[2026-04-03 11:03:07.526] [info] CMC::computeControls, t = 2.96
+[2026-04-03 11:03:07.536] [info] CMC::computeControls, t = 2.961
+[2026-04-03 11:03:07.547] [info] CMC::computeControls, t = 2.962
+[2026-04-03 11:03:07.558] [info] CMC::computeControls, t = 2.963
+[2026-04-03 11:03:07.568] [info] CMC::computeControls, t = 2.964
+[2026-04-03 11:03:07.579] [info] CMC::computeControls, t = 2.965
+[2026-04-03 11:03:07.590] [info] CMC::computeControls, t = 2.966
+[2026-04-03 11:03:07.601] [info] CMC::computeControls, t = 2.967
+[2026-04-03 11:03:07.612] [info] CMC::computeControls, t = 2.968
+[2026-04-03 11:03:07.625] [info] CMC::computeControls, t = 2.969
+[2026-04-03 11:03:07.636] [info] CMC::computeControls, t = 2.97
+[2026-04-03 11:03:07.647] [info] CMC::computeControls, t = 2.971
+[2026-04-03 11:03:07.660] [info] CMC::computeControls, t = 2.972
+[2026-04-03 11:03:07.673] [info] CMC::computeControls, t = 2.973
+[2026-04-03 11:03:07.685] [info] CMC::computeControls, t = 2.974
+[2026-04-03 11:03:07.696] [info] CMC::computeControls, t = 2.975
+[2026-04-03 11:03:07.709] [info] CMC::computeControls, t = 2.976
+[2026-04-03 11:03:07.720] [info] CMC::computeControls, t = 2.977
+[2026-04-03 11:03:07.731] [info] CMC::computeControls, t = 2.978
+[2026-04-03 11:03:07.743] [info] CMC::computeControls, t = 2.979
+[2026-04-03 11:03:07.753] [info] CMC::computeControls, t = 2.98
+[2026-04-03 11:03:07.766] [info] CMC::computeControls, t = 2.981
+[2026-04-03 11:03:07.777] [info] CMC::computeControls, t = 2.982
+[2026-04-03 11:03:07.788] [info] CMC::computeControls, t = 2.983
+[2026-04-03 11:03:07.799] [info] CMC::computeControls, t = 2.984
+[2026-04-03 11:03:07.811] [info] CMC::computeControls, t = 2.985
+[2026-04-03 11:03:07.824] [info] CMC::computeControls, t = 2.986
+[2026-04-03 11:03:07.835] [info] CMC::computeControls, t = 2.987
+[2026-04-03 11:03:07.847] [info] CMC::computeControls, t = 2.988
+[2026-04-03 11:03:07.861] [info] CMC::computeControls, t = 2.989
+[2026-04-03 11:03:07.873] [info] CMC::computeControls, t = 2.99
+[2026-04-03 11:03:07.883] [info] CMC::computeControls, t = 2.991
+[2026-04-03 11:03:07.895] [info] CMC::computeControls, t = 2.992
+[2026-04-03 11:03:07.906] [info] CMC::computeControls, t = 2.993
+[2026-04-03 11:03:07.917] [info] CMC::computeControls, t = 2.994
+[2026-04-03 11:03:07.929] [info] CMC::computeControls, t = 2.995
+[2026-04-03 11:03:07.942] [info] CMC::computeControls, t = 2.996
+[2026-04-03 11:03:07.953] [info] CMC::computeControls, t = 2.997
+[2026-04-03 11:03:07.964] [info] CMC::computeControls, t = 2.998
+[2026-04-03 11:03:07.975] [info] CMC::computeControls, t = 2.999
+[2026-04-03 11:03:07.986] [info] CMC::computeControls, t = 3.0
+[2026-04-03 11:03:07.997] [info] CMC::computeControls, t = 3.00100
+[2026-04-03 11:03:08.008] [info] CMC::computeControls, t = 3.00200
+[2026-04-03 11:03:08.022] [info] CMC::computeControls, t = 3.00300
+[2026-04-03 11:03:08.034] [info] CMC::computeControls, t = 3.00400
+[2026-04-03 11:03:08.044] [info] CMC::computeControls, t = 3.00500
+[2026-04-03 11:03:08.058] [info] CMC::computeControls, t = 3.00600
+[2026-04-03 11:03:08.068] [info] CMC::computeControls, t = 3.00700
+[2026-04-03 11:03:08.079] [info] CMC::computeControls, t = 3.00800
+[2026-04-03 11:03:08.090] [info] CMC::computeControls, t = 3.00900
+[2026-04-03 11:03:08.100] [info] CMC::computeControls, t = 3.01
+[2026-04-03 11:03:08.112] [info] CMC::computeControls, t = 3.011
+[2026-04-03 11:03:08.126] [info] CMC::computeControls, t = 3.012
+[2026-04-03 11:03:08.136] [info] CMC::computeControls, t = 3.013
+[2026-04-03 11:03:08.147] [info] CMC::computeControls, t = 3.014
+[2026-04-03 11:03:08.162] [info] CMC::computeControls, t = 3.015
+[2026-04-03 11:03:08.174] [info] CMC::computeControls, t = 3.016
+[2026-04-03 11:03:08.185] [info] CMC::computeControls, t = 3.017
+[2026-04-03 11:03:08.195] [info] CMC::computeControls, t = 3.018
+[2026-04-03 11:03:08.207] [info] CMC::computeControls, t = 3.019
+[2026-04-03 11:03:08.219] [info] CMC::computeControls, t = 3.02
+[2026-04-03 11:03:08.230] [info] CMC::computeControls, t = 3.021
+[2026-04-03 11:03:08.244] [info] CMC::computeControls, t = 3.022
+[2026-04-03 11:03:08.257] [info] CMC::computeControls, t = 3.023
+[2026-04-03 11:03:08.269] [info] CMC::computeControls, t = 3.024
+[2026-04-03 11:03:08.282] [info] CMC::computeControls, t = 3.025
+[2026-04-03 11:03:08.294] [info] CMC::computeControls, t = 3.026
+[2026-04-03 11:03:08.307] [info] CMC::computeControls, t = 3.027
+[2026-04-03 11:03:08.321] [info] CMC::computeControls, t = 3.028
+[2026-04-03 11:03:08.336] [info] CMC::computeControls, t = 3.029
+[2026-04-03 11:03:08.350] [info] CMC::computeControls, t = 3.03
+[2026-04-03 11:03:08.363] [info] CMC::computeControls, t = 3.031
+[2026-04-03 11:03:08.381] [info] CMC::computeControls, t = 3.032
+[2026-04-03 11:03:08.399] [info] CMC::computeControls, t = 3.033
+[2026-04-03 11:03:08.413] [info] CMC::computeControls, t = 3.034
+[2026-04-03 11:03:08.428] [info] CMC::computeControls, t = 3.035
+[2026-04-03 11:03:08.443] [info] CMC::computeControls, t = 3.036
+[2026-04-03 11:03:08.460] [info] CMC::computeControls, t = 3.037
+[2026-04-03 11:03:08.473] [info] CMC::computeControls, t = 3.038
+[2026-04-03 11:03:08.487] [info] CMC::computeControls, t = 3.039
+[2026-04-03 11:03:08.504] [info] CMC::computeControls, t = 3.04
+[2026-04-03 11:03:08.522] [info] CMC::computeControls, t = 3.041
+[2026-04-03 11:03:08.539] [info] CMC::computeControls, t = 3.042
+[2026-04-03 11:03:08.552] [info] CMC::computeControls, t = 3.043
+[2026-04-03 11:03:08.566] [info] CMC::computeControls, t = 3.044
+[2026-04-03 11:03:08.579] [info] CMC::computeControls, t = 3.045
+[2026-04-03 11:03:08.592] [info] CMC::computeControls, t = 3.046
+[2026-04-03 11:03:08.605] [info] CMC::computeControls, t = 3.047
+[2026-04-03 11:03:08.625] [info] CMC::computeControls, t = 3.048
+[2026-04-03 11:03:08.647] [info] CMC::computeControls, t = 3.049
+[2026-04-03 11:03:08.666] [info] CMC::computeControls, t = 3.05
+[2026-04-03 11:03:08.680] [info] CMC::computeControls, t = 3.051
+[2026-04-03 11:03:08.693] [info] CMC::computeControls, t = 3.052
+[2026-04-03 11:03:08.709] [info] CMC::computeControls, t = 3.053
+[2026-04-03 11:03:08.733] [info] CMC::computeControls, t = 3.054
+[2026-04-03 11:03:08.756] [info] CMC::computeControls, t = 3.055
+[2026-04-03 11:03:08.774] [info] CMC::computeControls, t = 3.056
+[2026-04-03 11:03:08.789] [info] CMC::computeControls, t = 3.057
+[2026-04-03 11:03:08.802] [info] CMC::computeControls, t = 3.058
+[2026-04-03 11:03:08.816] [info] CMC::computeControls, t = 3.059
+[2026-04-03 11:03:08.828] [info] CMC::computeControls, t = 3.06
+[2026-04-03 11:03:08.841] [info] CMC::computeControls, t = 3.061
+[2026-04-03 11:03:08.852] [info] CMC::computeControls, t = 3.062
+[2026-04-03 11:03:08.863] [info] CMC::computeControls, t = 3.063
+[2026-04-03 11:03:08.875] [info] CMC::computeControls, t = 3.064
+[2026-04-03 11:03:08.886] [info] CMC::computeControls, t = 3.065
+[2026-04-03 11:03:08.898] [info] CMC::computeControls, t = 3.066
+[2026-04-03 11:03:08.912] [info] CMC::computeControls, t = 3.067
+[2026-04-03 11:03:08.926] [info] CMC::computeControls, t = 3.068
+[2026-04-03 11:03:08.937] [info] CMC::computeControls, t = 3.069
+[2026-04-03 11:03:08.949] [info] CMC::computeControls, t = 3.07
+[2026-04-03 11:03:08.962] [info] CMC::computeControls, t = 3.071
+[2026-04-03 11:03:08.973] [info] CMC::computeControls, t = 3.072
+[2026-04-03 11:03:08.983] [info] CMC::computeControls, t = 3.073
+[2026-04-03 11:03:08.994] [info] CMC::computeControls, t = 3.074
+[2026-04-03 11:03:09.005] [info] CMC::computeControls, t = 3.075
+[2026-04-03 11:03:09.016] [info] CMC::computeControls, t = 3.076
+[2026-04-03 11:03:09.028] [info] CMC::computeControls, t = 3.077
+[2026-04-03 11:03:09.060] [info] CMC::computeControls, t = 3.078
+[2026-04-03 11:03:09.083] [info] CMC::computeControls, t = 3.079
+[2026-04-03 11:03:09.098] [info] CMC::computeControls, t = 3.08
+[2026-04-03 11:03:09.114] [info] CMC::computeControls, t = 3.081
+[2026-04-03 11:03:09.132] [info] CMC::computeControls, t = 3.082
+[2026-04-03 11:03:09.145] [info] CMC::computeControls, t = 3.083
+[2026-04-03 11:03:09.162] [info] CMC::computeControls, t = 3.084
+[2026-04-03 11:03:09.175] [info] CMC::computeControls, t = 3.085
+[2026-04-03 11:03:09.189] [info] CMC::computeControls, t = 3.086
+[2026-04-03 11:03:09.201] [info] CMC::computeControls, t = 3.087
+[2026-04-03 11:03:09.214] [info] CMC::computeControls, t = 3.088
+[2026-04-03 11:03:09.231] [info] CMC::computeControls, t = 3.089
+[2026-04-03 11:03:09.246] [info] CMC::computeControls, t = 3.09
+[2026-04-03 11:03:09.262] [info] CMC::computeControls, t = 3.091
+[2026-04-03 11:03:09.277] [info] CMC::computeControls, t = 3.092
+[2026-04-03 11:03:09.290] [info] CMC::computeControls, t = 3.093
+[2026-04-03 11:03:09.304] [info] CMC::computeControls, t = 3.094
+[2026-04-03 11:03:09.317] [info] CMC::computeControls, t = 3.095
+[2026-04-03 11:03:09.330] [info] CMC::computeControls, t = 3.096
+[2026-04-03 11:03:09.343] [info] CMC::computeControls, t = 3.097
+[2026-04-03 11:03:09.356] [info] CMC::computeControls, t = 3.098
+[2026-04-03 11:03:09.369] [info] CMC::computeControls, t = 3.099
+[2026-04-03 11:03:09.382] [info] CMC::computeControls, t = 3.1
+[2026-04-03 11:03:09.395] [info] CMC::computeControls, t = 3.10100
+[2026-04-03 11:03:09.410] [info] CMC::computeControls, t = 3.10200
+[2026-04-03 11:03:09.425] [info] CMC::computeControls, t = 3.10300
+[2026-04-03 11:03:09.438] [info] CMC::computeControls, t = 3.10400
+[2026-04-03 11:03:09.451] [info] CMC::computeControls, t = 3.10500
+[2026-04-03 11:03:09.464] [info] CMC::computeControls, t = 3.10600
+[2026-04-03 11:03:09.477] [info] CMC::computeControls, t = 3.10700
+[2026-04-03 11:03:09.488] [info] CMC::computeControls, t = 3.10800
+[2026-04-03 11:03:09.500] [info] CMC::computeControls, t = 3.10900
+[2026-04-03 11:03:09.512] [info] CMC::computeControls, t = 3.11
+[2026-04-03 11:03:09.527] [info] CMC::computeControls, t = 3.111
+[2026-04-03 11:03:09.545] [info] CMC::computeControls, t = 3.112
+[2026-04-03 11:03:09.560] [info] CMC::computeControls, t = 3.113
+[2026-04-03 11:03:09.570] [info] CMC::computeControls, t = 3.114
+[2026-04-03 11:03:09.583] [info] CMC::computeControls, t = 3.115
+[2026-04-03 11:03:09.595] [info] CMC::computeControls, t = 3.116
+[2026-04-03 11:03:09.606] [info] CMC::computeControls, t = 3.117
+[2026-04-03 11:03:09.619] [info] CMC::computeControls, t = 3.118
+[2026-04-03 11:03:09.631] [info] CMC::computeControls, t = 3.119
+[2026-04-03 11:03:09.644] [info] CMC::computeControls, t = 3.12
+[2026-04-03 11:03:09.657] [info] CMC::computeControls, t = 3.121
+[2026-04-03 11:03:09.668] [info] CMC::computeControls, t = 3.122
+[2026-04-03 11:03:09.679] [info] CMC::computeControls, t = 3.123
+[2026-04-03 11:03:09.691] [info] CMC::computeControls, t = 3.124
+[2026-04-03 11:03:09.702] [info] CMC::computeControls, t = 3.125
+[2026-04-03 11:03:09.713] [info] CMC::computeControls, t = 3.126
+[2026-04-03 11:03:09.727] [info] CMC::computeControls, t = 3.127
+[2026-04-03 11:03:09.739] [info] CMC::computeControls, t = 3.128
+[2026-04-03 11:03:09.751] [info] CMC::computeControls, t = 3.129
+[2026-04-03 11:03:09.764] [info] CMC::computeControls, t = 3.13
+[2026-04-03 11:03:09.776] [info] CMC::computeControls, t = 3.131
+[2026-04-03 11:03:09.787] [info] CMC::computeControls, t = 3.132
+[2026-04-03 11:03:09.799] [info] CMC::computeControls, t = 3.133
+[2026-04-03 11:03:09.811] [info] CMC::computeControls, t = 3.134
+[2026-04-03 11:03:09.823] [info] CMC::computeControls, t = 3.135
+[2026-04-03 11:03:09.833] [info] CMC::computeControls, t = 3.136
+[2026-04-03 11:03:09.846] [info] CMC::computeControls, t = 3.137
+[2026-04-03 11:03:09.858] [info] CMC::computeControls, t = 3.138
+[2026-04-03 11:03:09.869] [info] CMC::computeControls, t = 3.139
+[2026-04-03 11:03:09.884] [info] CMC::computeControls, t = 3.14
+[2026-04-03 11:03:09.896] [info] CMC::computeControls, t = 3.141
+[2026-04-03 11:03:09.908] [info] CMC::computeControls, t = 3.142
+[2026-04-03 11:03:09.925] [info] CMC::computeControls, t = 3.143
+[2026-04-03 11:03:09.936] [info] CMC::computeControls, t = 3.144
+[2026-04-03 11:03:09.950] [info] CMC::computeControls, t = 3.145
+[2026-04-03 11:03:09.962] [info] CMC::computeControls, t = 3.146
+[2026-04-03 11:03:09.975] [info] CMC::computeControls, t = 3.147
+[2026-04-03 11:03:09.985] [info] CMC::computeControls, t = 3.148
+[2026-04-03 11:03:09.998] [info] CMC::computeControls, t = 3.149
+[2026-04-03 11:03:10.010] [info] CMC::computeControls, t = 3.15
+[2026-04-03 11:03:10.023] [info] CMC::computeControls, t = 3.151
+[2026-04-03 11:03:10.036] [info] CMC::computeControls, t = 3.152
+[2026-04-03 11:03:10.047] [info] CMC::computeControls, t = 3.153
+[2026-04-03 11:03:10.061] [info] CMC::computeControls, t = 3.154
+[2026-04-03 11:03:10.074] [info] CMC::computeControls, t = 3.155
+[2026-04-03 11:03:10.085] [info] CMC::computeControls, t = 3.156
+[2026-04-03 11:03:10.136] [info] CMC::computeControls, t = 3.157
+[2026-04-03 11:03:10.264] [error] SimTK Exception thrown at InteriorPointOptimizer.cpp:265:
+  Optimizer failed: Ipopt: Search direction becomes too small (status 3)
+[2026-04-03 11:03:10.264] [error] OPTIMIZATION FAILED...
+[2026-04-03 11:03:10.264] [error] CMC::computeControls: Optimizer could not find a solution.
+Unable to find a feasible solution at time = 3.157.
+Model cannot generate the forces necessary to achieve the target acceleration.
+Possible issues: 1. not all model degrees-of-freedom are actuated, 
+2. there are tracking tasks for locked coordinates, and/or
+3. there are unnecessary control constraints on reserve/residual actuators.
+
+

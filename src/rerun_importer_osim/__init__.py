@@ -138,92 +138,135 @@ def parse_osim_model(filepath: str) -> dict | None:
     model_elem = root.find("Model") or root
     name = model_elem.get("name", Path(filepath).stem)
 
-    bodies = []
     joints = []
+    bodies = []
+    # Version 3.0: joints inside bodies
     for body_elem in model_elem.iter("Body"):
-        b = {"name": body_elem.get("name", "")}
-        if b["name"] == "ground":
+        if body_elem.get("name", "") == "ground":
             continue
-        mass_elem = body_elem.find("mass")
-        if mass_elem is not None and mass_elem.text:
-            try:
-                b["mass"] = float(mass_elem.text)
-            except ValueError:
-                pass
-        inertia_elem = body_elem.find("inertia")
-        if inertia_elem is not None and inertia_elem.text:
-            parts = inertia_elem.text.strip().split()
-            if len(parts) >= 6:
-                b["inertia"] = [float(p) for p in parts[:6]]
-
-        # Geometry references
-        geo_files = []
-        for disp in body_elem.iter("DisplayGeometry"):
-            gf = disp.find("geometry_file")
-            if gf is not None and gf.text:
-                scale = disp.find("scale_factors")
-                s = scale.text.strip().split() if scale is not None and scale.text else ["1", "1", "1"]
-                try:
-                    svec = [float(x) for x in s[:3]]
-                except ValueError:
-                    svec = [1.0, 1.0, 1.0]
-                geo_files.append({"file": gf.text.strip(), "scale": svec})
-        if geo_files:
-            b["geometry"] = geo_files
-        bodies.append(b)
-
-        # Extract joint from within this body's <Joint> child
+        _extract_geo_from_body(body_elem, bodies)
         joint_wrapper = body_elem.find("Joint")
-        if joint_wrapper is None:
-            continue
-        # The actual joint is one level deeper
-        for joint_elem in joint_wrapper:
-            tag = joint_elem.tag
-            if not tag.endswith("Joint"):
-                continue
-            j = {
-                "name": joint_elem.get("name", ""),
-                "type": tag,
-                "child": b["name"],
-            }
-            parent = joint_elem.find("parent_body")
-            if parent is not None and parent.text:
-                j["parent"] = parent.text.strip()
-            for loc_elem in joint_elem.iter("location_in_parent"):
-                if loc_elem.text:
-                    parts = loc_elem.text.strip().split()
-                    if len(parts) >= 3:
-                        j["location"] = [float(p) for p in parts[:3]]
-            for orient_elem in joint_elem.iter("orientation_in_parent"):
-                if orient_elem.text:
-                    parts = orient_elem.text.strip().split()
-                    if len(parts) >= 3:
-                        j["orientation"] = [float(p) for p in parts[:3]]
-            # Coordinates
-            coords = []
-            for coord_elem in joint_elem.iter("Coordinate"):
-                c = {"name": coord_elem.get("name", "")}
-                range_elem = coord_elem.find("range")
-                if range_elem is not None and range_elem.text:
-                    parts = range_elem.text.strip().split()
-                    if len(parts) >= 2:
-                        c["range"] = [float(p) for p in parts[:2]]
-                default_elem = coord_elem.find("default_value")
-                if default_elem is not None and default_elem.text:
-                    try:
-                        c["default"] = float(default_elem.text)
-                    except ValueError:
-                        pass
-                coords.append(c)
-            if coords:
-                j["coordinates"] = coords
-            joints.append(j)
+        if joint_wrapper is not None:
+            for joint_elem in joint_wrapper:
+                if joint_elem.tag.endswith("Joint"):
+                    j = _parse_joint_element(joint_elem)
+                    if "child" not in j:
+                        j["child"] = body_elem.get("name", "")
+                    joints.append(j)
+
+    # Version 4.0: joints in JointSet
+    if not joints:
+        for joint_set in model_elem.iter("JointSet"):
+            for container in joint_set:
+                for joint_elem in container:
+                    if joint_elem.tag.endswith("Joint"):
+                        j = _parse_joint_element(joint_elem)
+                        joints.append(j)
 
     return {
         "name": name,
         "bodies": bodies,
         "joints": joints,
     }
+
+
+def _parse_joint_element(joint_elem: ET.Element) -> dict:
+    """Extract joint properties from a joint XML element (3.0 or 4.0 format)."""
+    j = {
+        "name": joint_elem.get("name", ""),
+        "type": joint_elem.tag,
+    }
+    # Version 4.0: socket_parent_frame / socket_child_frame
+    parent_socket = joint_elem.find("socket_parent_frame")
+    child_socket = joint_elem.find("socket_child_frame")
+    if parent_socket is not None and parent_socket.text:
+        p = parent_socket.text.strip()
+        # Strip _offset or _joint suffix to get body name
+        for suffix in ["_offset", "_joint", "_frame"]:
+            if p.endswith(suffix):
+                p = p[: -len(suffix)]
+                break
+        j["parent"] = p
+    # Fall back to parent_body (version 3.0)
+    if "parent" not in j:
+        parent_elem = joint_elem.find("parent_body")
+        if parent_elem is not None and parent_elem.text:
+            j["parent"] = parent_elem.text.strip()
+    if child_socket is not None and child_socket.text:
+        c = child_socket.text.strip()
+        for suffix in ["_offset", "_joint", "_frame"]:
+            if c.endswith(suffix):
+                c = c[: -len(suffix)]
+                break
+        j["child"] = c
+    # Fall back to parent_body (version 3.0): child will be set by caller
+    if "child" not in j:
+        child_elem = joint_elem.find("child_body")
+        if child_elem is not None and child_elem.text:
+            j["child"] = child_elem.text.strip()
+
+    for loc_elem in joint_elem.iter("location_in_parent"):
+        if loc_elem.text:
+            parts = loc_elem.text.strip().split()
+            if len(parts) >= 3:
+                j["location"] = [float(p) for p in parts[:3]]
+    for orient_elem in joint_elem.iter("orientation_in_parent"):
+        if orient_elem.text:
+            parts = orient_elem.text.strip().split()
+            if len(parts) >= 3:
+                j["orientation"] = [float(p) for p in parts[:3]]
+    # Coordinates
+    coords = []
+    for coord_elem in joint_elem.iter("Coordinate"):
+        c = {"name": coord_elem.get("name", "")}
+        range_elem = coord_elem.find("range")
+        if range_elem is not None and range_elem.text:
+            parts = range_elem.text.strip().split()
+            if len(parts) >= 2:
+                c["range"] = [float(p) for p in parts[:2]]
+        default_elem = coord_elem.find("default_value")
+        if default_elem is not None and default_elem.text:
+            try:
+                c["default"] = float(default_elem.text)
+            except ValueError:
+                pass
+        coords.append(c)
+    if coords:
+        j["coordinates"] = coords
+    return j
+
+
+def _extract_geo_from_body(body_elem: ET.Element, bodies: list):
+    """Extract body properties and geometry from a Body XML element."""
+    b = {"name": body_elem.get("name", "")}
+    if b["name"] == "ground":
+        return
+    mass_elem = body_elem.find("mass")
+    if mass_elem is not None and mass_elem.text:
+        try:
+            b["mass"] = float(mass_elem.text)
+        except ValueError:
+            pass
+    inertia_elem = body_elem.find("inertia")
+    if inertia_elem is not None and inertia_elem.text:
+        parts = inertia_elem.text.strip().split()
+        if len(parts) >= 6:
+            b["inertia"] = [float(p) for p in parts[:6]]
+    # Geometry references
+    geo_files = []
+    for disp in body_elem.iter("DisplayGeometry"):
+        gf = disp.find("geometry_file")
+        if gf is not None and gf.text:
+            scale = disp.find("scale_factors")
+            s = scale.text.strip().split() if scale is not None and scale.text else ["1", "1", "1"]
+            try:
+                svec = [float(x) for x in s[:3]]
+            except ValueError:
+                svec = [1.0, 1.0, 1.0]
+            geo_files.append({"file": gf.text.strip(), "scale": svec})
+    if geo_files:
+        b["geometry"] = geo_files
+    bodies.append(b)
 
 
 # ---------------------------------------------------------------------------
@@ -409,6 +452,20 @@ def parse_trc(filepath: str) -> dict | None:
 # Kinematic tree and IK animation
 # ---------------------------------------------------------------------------
 
+def _resolve_geo_path(geo_dir: Path, meshes_dir: Path, filename: str) -> tuple[Path | None, str]:
+    """Find a geometry file in either the Geometry or meshes directory."""
+    ext = Path(filename).suffix.lower()
+    for base in [geo_dir, meshes_dir]:
+        p = base / filename
+        if p.exists():
+            return p, ext
+    for base in [geo_dir, meshes_dir]:
+        for p in base.glob(f"*{ext}"):
+            if p.stem.lower() == Path(filename).stem.lower():
+                return p, ext
+    return None, ext
+
+
 def detect_file_type(filepath: str) -> str:
     """Return ``osim``, ``sto``, ``mot``, ``trc``, or ``unknown``."""
     ext = Path(filepath).suffix.lower()
@@ -581,8 +638,19 @@ def extract_spatial_axes(model_xml_root: ET.Element, joint_elem: ET.Element) -> 
     if transform is None:
         return axes
     for axis_elem in transform:
-        coord_elem = axis_elem.find("coordinate")
-        coord_name = coord_elem.text.strip() if coord_elem is not None and coord_elem.text else ""
+        # OpenSim 4.0: <coordinates> (plural, text content)
+        coord_name = ""
+        coords_elem = axis_elem.find("coordinates")
+        if coords_elem is not None and coords_elem.text:
+            coord_name = coords_elem.text.strip().split(",")[0].strip()
+        # OpenSim 3.0: <coordinate> (singular, text content)
+        if not coord_name:
+            coord_elem = axis_elem.find("coordinate")
+            if coord_elem is not None and coord_elem.text:
+                coord_name = coord_elem.text.strip()
+        # Name attribute fallback
+        if not coord_name:
+            coord_name = axis_elem.get("name", "")
         axis_xyz = axis_elem.find("axis")
         axis_vec = [0, 0, 1]
         if axis_xyz is not None and axis_xyz.text:
@@ -590,29 +658,10 @@ def extract_spatial_axes(model_xml_root: ET.Element, joint_elem: ET.Element) -> 
                 axis_vec = [float(x) for x in axis_xyz.text.strip().split()[:3]]
             except ValueError:
                 pass
-        # Determine if rotation or translation
-        # Look for child elements named 'rotation' or 'translation'
-        is_rotation = False
-        is_translation = False
-        for child in axis_elem:
-            if child.tag == "function":
-                continue
-            if child.tag in ("coordinate", "axis"):
-                continue
-            if "rotation" in child.tag.lower() or child.tag == "rotation":
-                is_rotation = True
-            if "translation" in child.tag.lower() or child.tag == "translation":
-                is_translation = True
-        # If neither tag found, infer from axis name
-        if not is_rotation and not is_translation:
-            # In OpenSim, axes without explicit type are rotations for the first 3
-            # and translations for the next 3, but we can check by axis element presence
-            # The OpenSim convention: first 3 axes are rotations, next 3 are translations
-            # Actually the tag itself tells us: the element tag IS TransformAxis
-            # We check parent_found or just default to rotation
-            is_rotation = True  # default
-
-        axes.append({"coord": coord_name, "axis": axis_vec, "type": "rotation" if is_rotation else "translation"})
+        # Determine type from TransformAxis name
+        name = axis_elem.get("name", "")
+        ctype = "rotation" if "rotation" in name.lower() else "translation"
+        axes.append({"coord": coord_name, "axis": axis_vec, "type": ctype})
     return axes
 
 
@@ -832,35 +881,39 @@ def log_osim(
 
         # Log mesh geometry
         geo_dir = Path(filepath).parent / "Geometry"
+        meshes_dir = Path(filepath).parent / "meshes"
         for geo_info in body.get("geometry", []):
-            geo_path = geo_dir / geo_info["file"]
-            if not geo_path.exists():
-                continue
-            mesh = parse_vtp(str(geo_path))
-            if mesh is None or len(mesh["vertices"]) == 0:
+            geo_path, ext = _resolve_geo_path(geo_dir, meshes_dir, geo_info["file"])
+            if geo_path is None or not geo_path.exists():
                 continue
             scale = geo_info.get("scale", [1.0, 1.0, 1.0])
-            verts = mesh["vertices"] * scale
 
-            if len(mesh["triangles"]) > 0:
-                normals = compute_normals(verts, mesh["triangles"])
+            if ext == ".vtp":
+                mesh = parse_vtp(str(geo_path))
+                if mesh is None or len(mesh["vertices"]) == 0:
+                    continue
+                verts = mesh["vertices"] * scale
+                if len(mesh["triangles"]) > 0:
+                    normals = compute_normals(verts, mesh["triangles"])
+                    recording.log(
+                        f"{body_path}/mesh",
+                        rr.Mesh3D(
+                            vertex_positions=verts,
+                            triangle_indices=mesh["triangles"],
+                            vertex_normals=normals,
+                        ),
+                        static=True,
+                    )
+                else:
+                    recording.log(
+                        f"{body_path}/mesh",
+                        rr.Points3D(verts, radii=0.005),
+                        static=True,
+                    )
+            elif ext in (".stl", ".obj", ".glb", ".gltf"):
                 recording.log(
                     f"{body_path}/mesh",
-                    rr.Mesh3D(
-                        vertex_positions=verts,
-                        triangle_indices=mesh["triangles"],
-                        vertex_normals=normals,
-                    ),
-                    static=True,
-                )
-            else:
-                # Verts-only: log as point cloud
-                recording.log(
-                    f"{body_path}/mesh",
-                    rr.Points3D(
-                        verts,
-                        radii=0.005,
-                    ),
+                    rr.Asset3D(path=str(geo_path)),
                     static=True,
                 )
 

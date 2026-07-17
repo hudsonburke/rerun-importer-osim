@@ -154,6 +154,22 @@ def parse_osim_model(filepath: str) -> dict | None:
             parts = inertia_elem.text.strip().split()
             if len(parts) >= 6:
                 b["inertia"] = [float(p) for p in parts[:6]]
+
+        # Geometry references
+        geo_files = []
+        for disp in body_elem.iter("DisplayGeometry"):
+            gf = disp.find("geometry_file")
+            if gf is not None and gf.text:
+                scale = disp.find("scale_factors")
+                s = scale.text.strip().split() if scale is not None and scale.text else ["1", "1", "1"]
+                try:
+                    svec = [float(x) for x in s[:3]]
+                except ValueError:
+                    svec = [1.0, 1.0, 1.0]
+                geo_files.append({"file": gf.text.strip(), "scale": svec})
+        if geo_files:
+            b["geometry"] = geo_files
+
         bodies.append(b)
 
     joints = []
@@ -206,6 +222,61 @@ def parse_osim_model(filepath: str) -> dict | None:
         "name": name,
         "bodies": bodies,
         "joints": joints,
+    }
+
+
+# ---------------------------------------------------------------------------
+# .vtp mesh parser
+# ---------------------------------------------------------------------------
+
+def parse_vtp(filepath: str) -> dict | None:
+    """Parse a .vtp (VTK PolyData XML) file into vertices and triangles.
+
+    Returns dict with ``vertices`` (N, 3) and ``triangles`` (M, 3), or None.
+    """
+    try:
+        tree = ET.parse(filepath)
+    except ET.ParseError:
+        return None
+    root = tree.getroot()
+
+    piece = root.find(".//Piece")
+    if piece is None:
+        return None
+
+    # Vertices
+    points_elem = piece.find("Points")
+    if points_elem is None:
+        return None
+    data_arr = points_elem.find("DataArray")
+    if data_arr is None or data_arr.text is None:
+        return None
+    verts = np.fromstring(data_arr.text.strip(), sep=" ", dtype=np.float64)
+    verts = verts.reshape(-1, 3)
+
+    # Triangles (Polys)
+    polys_elem = piece.find("Polys")
+    if polys_elem is None:
+        return {"vertices": verts, "triangles": np.zeros((0, 3), dtype=np.int32)}
+
+    conn_arr = polys_elem.find("DataArray")
+    if conn_arr is None or conn_arr.text is None:
+        return {"vertices": verts, "triangles": np.zeros((0, 3), dtype=np.int32)}
+
+    conn = np.fromstring(conn_arr.text.strip(), sep=" ", dtype=np.int32)
+
+    # VTP stores polys as (n1, i1, i2, ..., n2, j1, j2, ...) where n is count
+    tris_list = []
+    pos = 0
+    while pos < len(conn):
+        n = int(conn[pos])
+        if n == 3:
+            tris_list.append(conn[pos + 1 : pos + 4])
+        pos += n + 1
+
+    return {
+        "vertices": verts,
+        "triangles": np.array(tris_list, dtype=np.int32) if tris_list else np.zeros((0, 3), dtype=np.int32),
     }
 
 
@@ -331,9 +402,29 @@ def log_osim(filepath: str, prefix: str, recording: rr.RecordingStream) -> None:
 
     # Log body properties as static scalars
     for body in model["bodies"]:
-        body_path = f"{prefix}/model/bodies/{body['name']}/mass"
+        body_path = f"{prefix}/model/bodies/{body['name']}"
         if "mass" in body:
-            recording.log(body_path, rr.Scalars([body["mass"]]), static=True)
+            recording.log(f"{body_path}/mass", rr.Scalars([body["mass"]]), static=True)
+
+        # Log mesh geometry
+        geo_dir = Path(filepath).parent / "Geometry"
+        for geo_info in body.get("geometry", []):
+            geo_path = geo_dir / geo_info["file"]
+            if not geo_path.exists():
+                continue
+            mesh = parse_vtp(str(geo_path))
+            if mesh is None or len(mesh["vertices"]) == 0:
+                continue
+            scale = geo_info.get("scale", [1.0, 1.0, 1.0])
+            verts = mesh["vertices"] * scale
+            recording.log(
+                f"{body_path}/mesh",
+                rr.Mesh3D(
+                    vertex_positions=verts,
+                    triangle_indices=mesh["triangles"],
+                ),
+                static=True,
+            )
 
     # Log joint hierarchy as transforms
     for joint in model["joints"]:

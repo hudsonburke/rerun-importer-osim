@@ -135,14 +135,15 @@ def parse_osim_model(filepath: str) -> dict | None:
     except ET.ParseError:
         return None
 
-    ns = ""  # OpenSim XML doesn't generally use namespaces
-
     model_elem = root.find("Model") or root
     name = model_elem.get("name", Path(filepath).stem)
 
     bodies = []
+    joints = []
     for body_elem in model_elem.iter("Body"):
         b = {"name": body_elem.get("name", "")}
+        if b["name"] == "ground":
+            continue
         mass_elem = body_elem.find("mass")
         if mass_elem is not None and mass_elem.text:
             try:
@@ -169,54 +170,54 @@ def parse_osim_model(filepath: str) -> dict | None:
                 geo_files.append({"file": gf.text.strip(), "scale": svec})
         if geo_files:
             b["geometry"] = geo_files
-
         bodies.append(b)
 
-    joints = []
-    for joint_elem in model_elem.iter("Joint"):
-        j = {
-            "name": joint_elem.get("name", ""),
-            "type": joint_elem.tag,
-        }
-        parent = joint_elem.find("parent_body")
-        child = joint_elem.find("child_body")
-        if parent is not None and parent.text:
-            j["parent"] = parent.text.strip()
-        if child is not None and child.text:
-            j["child"] = child.text.strip()
-
-        # Location/orientation in parent frame
-        for loc_elem in joint_elem.iter("location_in_parent"):
-            if loc_elem.text:
-                parts = loc_elem.text.strip().split()
-                if len(parts) >= 3:
-                    j["location"] = [float(p) for p in parts[:3]]
-        for orient_elem in joint_elem.iter("orientation_in_parent"):
-            if orient_elem.text:
-                parts = orient_elem.text.strip().split()
-                if len(parts) >= 3:
-                    j["orientation"] = [float(p) for p in parts[:3]]
-
-        # Coordinate ranges (for joints with DoFs)
-        coords = []
-        for coord_elem in joint_elem.iter("Coordinate"):
-            c = {"name": coord_elem.get("name", "")}
-            range_elem = coord_elem.find("range")
-            if range_elem is not None and range_elem.text:
-                parts = range_elem.text.strip().split()
-                if len(parts) >= 2:
-                    c["range"] = [float(p) for p in parts[:2]]
-            default_elem = coord_elem.find("default_value")
-            if default_elem is not None and default_elem.text:
-                try:
-                    c["default"] = float(default_elem.text)
-                except ValueError:
-                    pass
-            coords.append(c)
-        if coords:
-            j["coordinates"] = coords
-
-        joints.append(j)
+        # Extract joint from within this body's <Joint> child
+        joint_wrapper = body_elem.find("Joint")
+        if joint_wrapper is None:
+            continue
+        # The actual joint is one level deeper
+        for joint_elem in joint_wrapper:
+            tag = joint_elem.tag
+            if not tag.endswith("Joint"):
+                continue
+            j = {
+                "name": joint_elem.get("name", ""),
+                "type": tag,
+                "child": b["name"],
+            }
+            parent = joint_elem.find("parent_body")
+            if parent is not None and parent.text:
+                j["parent"] = parent.text.strip()
+            for loc_elem in joint_elem.iter("location_in_parent"):
+                if loc_elem.text:
+                    parts = loc_elem.text.strip().split()
+                    if len(parts) >= 3:
+                        j["location"] = [float(p) for p in parts[:3]]
+            for orient_elem in joint_elem.iter("orientation_in_parent"):
+                if orient_elem.text:
+                    parts = orient_elem.text.strip().split()
+                    if len(parts) >= 3:
+                        j["orientation"] = [float(p) for p in parts[:3]]
+            # Coordinates
+            coords = []
+            for coord_elem in joint_elem.iter("Coordinate"):
+                c = {"name": coord_elem.get("name", "")}
+                range_elem = coord_elem.find("range")
+                if range_elem is not None and range_elem.text:
+                    parts = range_elem.text.strip().split()
+                    if len(parts) >= 2:
+                        c["range"] = [float(p) for p in parts[:2]]
+                default_elem = coord_elem.find("default_value")
+                if default_elem is not None and default_elem.text:
+                    try:
+                        c["default"] = float(default_elem.text)
+                    except ValueError:
+                        pass
+                coords.append(c)
+            if coords:
+                j["coordinates"] = coords
+            joints.append(j)
 
     return {
         "name": name,
@@ -405,7 +406,7 @@ def parse_trc(filepath: str) -> dict | None:
 
 
 # ---------------------------------------------------------------------------
-# Rerun logging
+# Kinematic tree and IK animation
 # ---------------------------------------------------------------------------
 
 def detect_file_type(filepath: str) -> str:
@@ -422,11 +423,394 @@ def detect_file_type(filepath: str) -> str:
     return "unknown"
 
 
-def log_osim(filepath: str, prefix: str, recording: rr.RecordingStream) -> None:
-    """Log an OpenSim model (.osim) to Rerun."""
-    model = parse_osim_model(filepath)
+def build_kinematic_tree(model: dict) -> list[dict]:
+    """Build an ordered list of joints from root to leaves.
+
+    Each entry::
+        {name, type, parent, child, location, orientation, coords, axes}
+    """
+    joints = model["joints"]
+    # Build child lookup
+    children_of: dict[str, list] = {j["name"]: [] for j in joints}
+    joint_map = {j["name"]: j for j in joints}
+    roots = []
+    for j in joints:
+        p = j.get("parent", "ground")
+        if p == "ground" or p not in joint_map:
+            roots.append(j["name"])
+        if p in joint_map:
+            children_of[p].append(j["name"])
+        elif p != "ground":
+            roots.append(j["name"])
+
+    # BFS from roots
+    ordered = []
+    queue = list(roots)
+    visited = set()
+    while queue:
+        name = queue.pop(0)
+        if name in visited:
+            continue
+        visited.add(name)
+        j = joint_map[name]
+        ordered.append(j)
+        for child in children_of.get(name, []):
+            if child not in visited:
+                queue.append(child)
+    return ordered
+
+
+def joint_coord_names(joint: dict) -> dict[str, dict]:
+    """Return a dict mapping coordinate names to their definitions for a joint."""
+    result = {}
+    for c in joint.get("coordinates", []):
+        cname = c["name"]
+        result[cname] = c
+    # For CustomJoint, get additional axis info
+    return result
+
+
+def compute_joint_transform_euler(orientation: list[float] | None) -> np.ndarray:
+    """XYZ Euler angles → 3x3 rotation matrix (R = Rz * Ry * Rx)."""
+    if not orientation or len(orientation) < 3:
+        return np.eye(3)
+    rx, ry, rz = np.radians(orientation)
+    cx, sx = np.cos(rx), np.sin(rx)
+    cy, sy = np.cos(ry), np.sin(ry)
+    cz, sz = np.cos(rz), np.sin(rz)
+    # R = Rz * Ry * Rx
+    return np.array([
+        [cy * cz, sx * sy * cz - cx * sz, cx * sy * cz + sx * sz],
+        [cy * sz, sx * sy * sz + cx * cz, cx * sy * sz - sx * cz],
+        [-sy, sx * cy, cx * cy],
+    ])
+
+
+def joint_local_transform(joint: dict, coords: dict[str, float], in_degrees: bool = True) -> tuple[np.ndarray, np.ndarray]:
+    """Compute the local transform (translation, rotation_matrix) for a joint.
+
+    Parameters
+    ----------
+    joint:
+        Joint definition from the model parser.
+    coords:
+        Mapping of coordinate name → value from IK data.
+    in_degrees:
+        Whether coordinate values are in degrees (default True).
+
+    Returns
+    -------
+    (translation, rotation_matrix) in the parent frame.
+    """
+    location = joint.get("location", [0.0, 0.0, 0.0])
+    orientation = joint.get("orientation", [0.0, 0.0, 0.0])
+
+    # Static transform from joint frame to parent frame
+    static_R = compute_joint_transform_euler(orientation)
+    static_t = np.array(location, dtype=np.float64)
+
+    # Apply coordinate-dependent transform (in the joint frame)
+    jtype = joint.get("type", "")
+    joint_R = np.eye(3)
+    joint_t = np.zeros(3)
+
+    deg_factor = np.pi / 180.0 if in_degrees else 1.0
+
+    coord_defs = {c["name"]: c for c in joint.get("coordinates", [])}
+
+    if jtype == "PinJoint":
+        # One coordinate, rotation about z-axis of joint frame
+        for cname, cval in coords.items():
+            a = cval * deg_factor
+            ca, sa = np.cos(a), np.sin(a)
+            joint_R = np.array([[ca, -sa, 0], [sa, ca, 0], [0, 0, 1]])
+            break  # PinJoint has only one coordinate
+
+    elif jtype == "UniversalJoint":
+        # Two coordinates: first about x, then about y (body-fixed)
+        vals = list(coords.values())
+        if len(vals) >= 2:
+            a1, a2 = vals[0] * deg_factor, vals[1] * deg_factor
+            ca1, sa1 = np.cos(a1), np.sin(a1)
+            ca2, sa2 = np.cos(a2), np.sin(a2)
+            # Rx(a1) then Ry(a2) (body-fixed = Ry * Rx in world frame)
+            joint_R = np.array([
+                [ca2, 0, sa2],
+                [sa1 * sa2, ca1, -sa1 * ca2],
+                [-ca1 * sa2, sa1, ca1 * ca2],
+            ])
+        elif len(vals) >= 1:
+            a = vals[0] * deg_factor
+            ca, sa = np.cos(a), np.sin(a)
+            joint_R = np.array([[1, 0, 0], [0, ca, -sa], [0, sa, ca]])
+
+    elif jtype == "CustomJoint":
+        # Apply SpatialTransform axes in order
+        # We need the axes definitions from the model XML
+        axes = joint.get("spatial_axes", [])
+        for ax in axes:
+            coord_name = ax.get("coord", "")
+            axis_vec = np.array(ax.get("axis", [0, 0, 1]))
+            ctype = ax.get("type", "rotation")  # rotation or translation
+            cval = coords.get(coord_name, 0.0)
+            if ctype == "rotation":
+                a = cval * deg_factor
+                ca, sa = np.cos(a), np.sin(a)
+                uv = axis_vec / np.linalg.norm(axis_vec)
+                # Rotation about arbitrary axis (Rodrigues)
+                R = np.array([
+                    [ca + uv[0]**2*(1-ca), uv[0]*uv[1]*(1-ca)-uv[2]*sa, uv[0]*uv[2]*(1-ca)+uv[1]*sa],
+                    [uv[1]*uv[0]*(1-ca)+uv[2]*sa, ca+uv[1]**2*(1-ca), uv[1]*uv[2]*(1-ca)-uv[0]*sa],
+                    [uv[2]*uv[0]*(1-ca)-uv[1]*sa, uv[2]*uv[1]*(1-ca)+uv[0]*sa, ca+uv[2]**2*(1-ca)],
+                ])
+                joint_R = R @ joint_R
+            elif ctype == "translation":
+                joint_t += axis_vec * cval
+
+    # Compose: child frame = static_t * static_R * joint_t * joint_R
+    # In the parent frame
+    trans = static_t + static_R @ joint_t
+    rot = static_R @ joint_R
+    return trans, rot
+
+
+def extract_spatial_axes(model_xml_root: ET.Element, joint_elem: ET.Element) -> list[dict]:
+    """Extract SpatialTransform axis definitions for a CustomJoint."""
+    axes = []
+    transform = joint_elem.find("SpatialTransform")
+    if transform is None:
+        return axes
+    for axis_elem in transform:
+        coord_elem = axis_elem.find("coordinate")
+        coord_name = coord_elem.text.strip() if coord_elem is not None and coord_elem.text else ""
+        axis_xyz = axis_elem.find("axis")
+        axis_vec = [0, 0, 1]
+        if axis_xyz is not None and axis_xyz.text:
+            try:
+                axis_vec = [float(x) for x in axis_xyz.text.strip().split()[:3]]
+            except ValueError:
+                pass
+        # Determine if rotation or translation
+        # Look for child elements named 'rotation' or 'translation'
+        is_rotation = False
+        is_translation = False
+        for child in axis_elem:
+            if child.tag == "function":
+                continue
+            if child.tag in ("coordinate", "axis"):
+                continue
+            if "rotation" in child.tag.lower() or child.tag == "rotation":
+                is_rotation = True
+            if "translation" in child.tag.lower() or child.tag == "translation":
+                is_translation = True
+        # If neither tag found, infer from axis name
+        if not is_rotation and not is_translation:
+            # In OpenSim, axes without explicit type are rotations for the first 3
+            # and translations for the next 3, but we can check by axis element presence
+            # The OpenSim convention: first 3 axes are rotations, next 3 are translations
+            # Actually the tag itself tells us: the element tag IS TransformAxis
+            # We check parent_found or just default to rotation
+            is_rotation = True  # default
+
+        axes.append({"coord": coord_name, "axis": axis_vec, "type": "rotation" if is_rotation else "translation"})
+    return axes
+
+
+def log_osim_with_ik(
+    model_path: str,
+    prefix: str,
+    recording: rr.RecordingStream,
+    ik_path: str | None = None,
+) -> None:
+    """Log an OSIM model to Rerun, with optional IK-driven animation."""
+    # Parse model
+    tree = ET.parse(model_path)
+    root_xml = tree.getroot()
+    model_elem = root_xml.find("Model") or root_xml
+
+    # Extract model with geometry
+    model = parse_osim_model(model_path)
     if model is None:
         return
+
+    # Pre-extract spatial axes for CustomJoints
+    joint_defs = {}
+    for joint_elem in model_elem.iter("Joint"):
+        jname = joint_elem.get("name", "")
+        if jname:
+            joint_defs[jname] = joint_elem
+
+    for j in model["joints"]:
+        if j["type"] == "CustomJoint":
+            xelem = joint_defs.get(j["name"])
+            if xelem is not None:
+                j["spatial_axes"] = extract_spatial_axes(root_xml, xelem)
+
+    # Log model info and body geometry
+    log_osim(model_path, prefix, recording, model=model)
+
+    # Log IK animation if provided
+    if ik_path:
+        log_ik_animation(ik_path, model, prefix, recording)
+
+
+def log_ik_animation(
+    ik_path: str,
+    model: dict,
+    prefix: str,
+    recording: rr.RecordingStream,
+) -> None:
+    """Log per-frame body transforms from IK data."""
+    ik_data = parse_storage(ik_path)
+    if ik_data["data"].size == 0:
+        return
+
+    times, time_idx = time_column(ik_data)
+    if times is None:
+        return
+
+    n_frames = len(times)
+    in_degrees = ik_data["metadata"].get("inDegrees", "yes").lower() != "no"
+
+    # Build IK coordinate lookup: column_name → column_index
+    ik_cols = {c: i for i, c in enumerate(ik_data["columns"]) if i != time_idx}
+
+    # Build kinematic tree
+    tree = build_kinematic_tree(model)
+
+    # Build inverse lookup: child body → joint
+    body_to_joint = {}
+    for j in tree:
+        child = j.get("child", "")
+        if child:
+            body_to_joint[child] = j
+
+    # Find root bodies (no parent joint or connected to ground)
+    all_children = set(j.get("child", "") for j in tree)
+    root_bodies = [j["parent"] for j in tree if j.get("parent", "") == "ground"]
+    # Also find bodies with no parent joint connecting them
+    for j in tree:
+        p = j.get("parent", "")
+        if p != "ground" and p not in body_to_joint and j.get("child", ""):
+            root_bodies.append(p)
+
+    # Walk the tree for each frame
+    for frame_idx in range(n_frames):
+        recording.set_time("time", duration=times[frame_idx])
+        recording.set_time("frame", sequence=frame_idx)
+
+        # Compute world transforms for each body
+        world_transforms: dict[str, tuple[np.ndarray, np.ndarray]] = {}
+        body_processed: set[str] = set()
+
+        def get_world_transform(body_name: str) -> tuple[np.ndarray, np.ndarray]:
+            """Compute world transform for a body recursively."""
+            if body_name in world_transforms:
+                return world_transforms[body_name]
+
+            if body_name == "ground":
+                t, R = np.zeros(3), np.eye(3)
+                world_transforms["ground"] = (t, R)
+                return t, R
+
+            if body_name in body_processed:
+                return world_transforms.get(body_name, (np.zeros(3), np.eye(3)))
+
+            body_processed.add(body_name)
+
+            # Find the joint whose child is this body
+            joint = body_to_joint.get(body_name)
+            if joint is None:
+                # Check if this is a root body connected to ground
+                t, R = np.zeros(3), np.eye(3)
+                world_transforms[body_name] = (t, R)
+                return t, R
+
+            # Get IK coordinate values for this joint
+            coords: dict[str, float] = {}
+            for c in joint.get("coordinates", []):
+                cname = c["name"]
+                if cname in ik_cols:
+                    coords[cname] = ik_data["data"][frame_idx, ik_cols[cname]]
+
+            # Local transform from joint
+            local_t, local_R = joint_local_transform(joint, coords, in_degrees)
+
+            # Parent world transform
+            parent_name = joint.get("parent", "ground")
+            parent_t, parent_R = get_world_transform(parent_name)
+
+            # Compose: world = parent_R * local_t + parent_t, parent_R * local_R
+            world_t = parent_t + parent_R @ local_t
+            world_R = parent_R @ local_R
+
+            world_transforms[body_name] = (world_t, world_R)
+            return world_t, world_R
+
+        # Compute transforms for all bodies in the tree
+        for j in tree:
+            child = j.get("child", "")
+            if child:
+                get_world_transform(child)
+
+        # Log transforms for each body
+        for body_name, (world_t, world_R) in world_transforms.items():
+            if body_name == "ground":
+                continue
+
+            body_path = f"{prefix}/model/bodies/{body_name}"
+
+            # Convert rotation matrix to quaternion
+            # (w, x, y, z) format for rerun
+            trace = np.trace(world_R)
+            if trace > 0:
+                S = np.sqrt(trace + 1.0) * 2
+                qw = 0.25 * S
+                qx = (world_R[2, 1] - world_R[1, 2]) / S
+                qy = (world_R[0, 2] - world_R[2, 0]) / S
+                qz = (world_R[1, 0] - world_R[0, 1]) / S
+            elif world_R[0, 0] > world_R[1, 1] and world_R[0, 0] > world_R[2, 2]:
+                S = np.sqrt(1.0 + world_R[0, 0] - world_R[1, 1] - world_R[2, 2]) * 2
+                qw = (world_R[2, 1] - world_R[1, 2]) / S
+                qx = 0.25 * S
+                qy = (world_R[0, 1] + world_R[1, 0]) / S
+                qz = (world_R[0, 2] + world_R[2, 0]) / S
+            elif world_R[1, 1] > world_R[2, 2]:
+                S = np.sqrt(1.0 + world_R[1, 1] - world_R[0, 0] - world_R[2, 2]) * 2
+                qw = (world_R[0, 2] - world_R[2, 0]) / S
+                qx = (world_R[0, 1] + world_R[1, 0]) / S
+                qy = 0.25 * S
+                qz = (world_R[1, 2] + world_R[2, 1]) / S
+            else:
+                S = np.sqrt(1.0 + world_R[2, 2] - world_R[0, 0] - world_R[1, 1]) * 2
+                qw = (world_R[1, 0] - world_R[0, 1]) / S
+                qx = (world_R[0, 2] + world_R[2, 0]) / S
+                qy = (world_R[1, 2] + world_R[2, 1]) / S
+                qz = 0.25 * S
+
+            recording.log(
+                body_path,
+                rr.Transform3D(
+                    translation=world_t,
+                    quaternion=(qw, qx, qy, qz),
+                ),
+            )
+
+    log_info_text = f"IK animation: {n_frames} frames, {len(world_transforms)} bodies"
+    recording.log(f"{prefix}/model/animation_info", rr.TextLog(log_info_text), static=True)
+
+
+def log_osim(
+    filepath: str,
+    prefix: str,
+    recording: rr.RecordingStream,
+    model: dict | None = None,
+) -> None:
+    """Log an OpenSim model (.osim) to Rerun."""
+    if model is None:
+        model = parse_osim_model(filepath)
+        if model is None:
+            return
 
     # Model info
     recording.log(
@@ -692,6 +1076,8 @@ Usage:
     parser.add_argument("--static", action="store_true", default=False)
     parser.add_argument("--time", type=str, action="append")
     parser.add_argument("--sequence", type=str, action="append")
+    parser.add_argument("--animate", type=str, default=None,
+        help="Path to IK .mot file for model animation")
 
     return parser
 
@@ -719,7 +1105,11 @@ def main() -> None:
     _set_time_from_args(args, recording)
 
     prefix = args.entity_path_prefix or Path(args.filepath).stem
-    log_file(args.filepath, prefix, recording)
+
+    if ext == ".osim" and args.animate:
+        log_osim_with_ik(args.filepath, prefix, recording, ik_path=args.animate)
+    else:
+        log_file(args.filepath, prefix, recording)
 
 
 def _set_time_from_args(args: argparse.Namespace, recording: rr.RecordingStream) -> None:

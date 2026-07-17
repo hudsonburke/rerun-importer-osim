@@ -1,0 +1,16 @@
+[project]
+name = "rerun-importer-osim"
+version = "0.1.0"
+description = "Rerun external importer for OpenSim model files (.osim) and results (.mot, .sto, .trc)"
+requires-python = ">=3.10"
+dependencies = [
+  "rerun-sdk>=0.34.0",
+  "numpy>=1.26.0",
+]
+
+[project.scripts]
+rerun-importer-osim = "rerun_importer_osim:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

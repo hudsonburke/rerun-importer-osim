@@ -6,6 +6,7 @@ requires-python = ">=3.10"
 dependencies = [
   "rerun-sdk>=0.34.0",
   "numpy>=1.26.0",
+  "melos-rerun",
 ]
 
 [project.scripts]

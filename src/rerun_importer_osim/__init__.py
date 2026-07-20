@@ -34,6 +34,11 @@ from pathlib import Path
 import numpy as np
 import rerun as rr
 
+from melos.rerun.components import (
+    JointDefinitionBatch,
+    LinkDefinitionBatch,
+)
+
 
 # ---------------------------------------------------------------------------
 # .sto / .mot parser
@@ -917,35 +922,67 @@ def log_osim(
                     static=True,
                 )
 
-    # Log joint hierarchy as transforms
+    # ── Skeleton path ──────────────────────────────────────────────────
+    skel_root = f"{prefix}/skeleton"
+
+    # Log joints as structured Arrow components (queryable via DuckDB)
     for joint in model["joints"]:
-        jpath = f"{prefix}/model/joints/{joint['name']}"
+        jname = joint["name"]
+        coords = joint.get("coordinates", [])
+        first_coord = coords[0] if coords else {}
+
+        joint_type = joint.get("type", "CustomJoint")
+        limits = (
+            {"lower": first_coord["range"][0], "upper": first_coord["range"][1]}
+            if "range" in first_coord
+            else None
+        )
+        default_qpos = first_coord.get("default", 0.0) if "default" in first_coord else 0.0
+
+        # Axis: PinJoint always rotates about the Z-axis of the parent frame.
+        # CustomJoint axes come from coordinate rotation coupling (more complex).
+        # For now, use a sensible default that downstream consumers can refine.
+        axis = [0.0, 0.0, 1.0] if "Pin" in joint_type else [0.0, 0.0, 0.0]
+
         recording.log(
-            f"{jpath}/info",
-            rr.TextDocument(
-                f"**Type**: {joint['type']}\n"
-                f"**Parent**: {joint.get('parent', 'ground')}\n"
-                f"**Child**: {joint.get('child', '')}\n",
-                media_type=rr.MediaType.MARKDOWN,
-            ),
+            f"{skel_root}/joints/{jname}",
+            JointDefinitionBatch([{
+                "joint_type": joint_type,
+                "axis": axis,
+                "limits": limits or JointDefinitionBatch._unbounded(),
+                "parent_link": joint.get("parent", "ground"),
+                "child_link": joint.get("child", ""),
+                "default_qpos": default_qpos,
+            }]).described(rr.ComponentDescriptor(
+                "biomech.JointDefinition",
+                archetype="biomech.Joint",
+                component_type="biomech.JointDefinition",
+            )),
             static=True,
         )
 
-        # Log coordinates
-        for coord in joint.get("coordinates", []):
-            cpath = f"{jpath}/coordinate/{coord['name']}"
-            if "range" in coord:
-                recording.log(
-                    f"{cpath}/range",
-                    rr.Scalars([coord["range"][0], coord["range"][1]]),
-                    static=True,
-                )
-            if "default" in coord:
-                recording.log(
-                    f"{cpath}/default",
-                    rr.Scalars([coord["default"]]),
-                    static=True,
-                )
+    # Log bodies as structured LinkDefinition components
+    for body in model["bodies"]:
+        body_name = body["name"]
+        recording.log(
+            f"{skel_root}/links/{body_name}",
+            LinkDefinitionBatch([{
+                "name": body_name,
+                "mass": body.get("mass", 0.0),
+                "center_of_mass": body.get("mass_center", [0.0, 0.0, 0.0]),
+                "inertia": body.get("inertia", [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]),
+                "graphics_file": next(
+                    (g.get("file", "") for g in body.get("geometry", [])),
+                    ""
+                ),
+                "visible": True,
+            }]).described(rr.ComponentDescriptor(
+                "biomech.LinkDefinition",
+                archetype="biomech.Link",
+                component_type="biomech.LinkDefinition",
+            )),
+            static=True,
+        )
 
 
 def log_storage(
